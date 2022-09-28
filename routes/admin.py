@@ -23,3 +23,6 @@ def mostrarAdmin():
         print("errores en aca en mostrarAdmin")
         return redirect("/")
 
+@superU.route("/saludar")
+def saludar():
+    return "Hola soy el admin"
