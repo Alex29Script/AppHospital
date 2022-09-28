@@ -101,5 +101,30 @@ class superControlador:
         finally:
             cursor.close()
             conexion.close()
+    
+    def buscarPaciente(self,id):
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            cursor.execute('SELECT * FROM persona JOIN user USING (idusuario) WHERE persona.idusuario=%s' %id)
+            busquedaPaciente=cursor.fetchone()
+            if busquedaPaciente is not None:
+                return busquedaPaciente
+            else: return ("vacio")
+        except:
+            print("usuario no encontrado o errores en buscarPaciente-superUsurio")
+        finally:
+            cursor.close()
+            conexion.close()
 
-
+    def actualizarPaciente(self,infopaciente=list()):
+        conexion=sqlite3.connect(Conexion.url)
+        cursor=conexion.cursor()
+        cursor.execute('''
+                        UPDATE persona 
+                        SET  idusuario= %s,nombres=%s,apellidos=%s,fechanacimiento=%s,genero=%s,estadocivil=%s,ocupacion=%s,
+                        telefono=%s,direccion=%s,discapacidad=%s,rh=%s,eps=%s
+                        WHERE idusuario=
+                        
+                        ''' %id)
+        

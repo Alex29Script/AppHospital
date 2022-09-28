@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>app</title>
-    <link href="../static/css/estiloappForm.css" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/estiloappForm.css') }}" rel="stylesheet">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
@@ -72,7 +72,7 @@
                                     <td> {{ paciente.0 }}  </td>
                                     <td> {{ paciente.1 }}  </td>
                                     <td> {{ paciente.2 }}  </td>
-                                    <td> <a href="admin/editar/{{paciente.0}}">editar</a> <a href="/admin/eliminar/paciente/tabla/{{paciente.0}}" method="POST">eliminar</a>  </td>
+                                    <td> <a href="/admin/buscar/paciente/{{paciente.0}}">editar</a> <a href="/admin/eliminar/paciente/tabla/{{paciente.0}}" method="POST">eliminar</a>  </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -84,20 +84,23 @@
 
 
 
-
+                {% if paraFormPaciente %}
                 <div class="contenedor">
+                    
                     <form id="Paciente2" name="formreg2" method="get">
                         <div class="elemento">
+                            
                             <div class="infoLog">
+                                
                                 <h3>Datos para login</h3>
                                 <div class="elementoform">
                                 <label for="IDUsuario">Cedula: </label>
-                                <input type="number" id="IDUsuario" name="idusuario" required="true" placeholder="su numero de cedula"/><br>
+                                <input type="number" id="IDUsuario" name="idusuario" required="true" placeholder="su numero de cedula" value="{{ paraFormPaciente.0 }}"/><br>
                                 </div>
 
                                 <div class="elementoform">
                                 <label for="nombre">Nombre</label>
-                                <input type="text" id="nombre" name="nombre" required="true" placeholder="su nombre"/><br>
+                                <input type="text" id="nombre" name="nombre" required="true" placeholder="su nombre" value="{{ paraFormPaciente.1 }}"/><br>
                                 </div>
 
 
@@ -105,21 +108,21 @@
                                 <label for="apellido">Apellido:</lable>
                                 <input type="text" id="apellido" name="apellido" 
                                 placeholder="escriba sus apellidos"
-                                required="true"/>
+                                required="true" value="{{ paraFormPaciente.2 }}"/>
                                 </div>
                                 
                                 <div class="elementoform">
                                 <label for="pass">Contraseña:</label>
                                 <input type="password" id="pass" name="pass" 
                                 placeholder="escriba su contraseña"
-                                required="true"/>
+                                required="true" value="{{ paraFormPaciente.14 }}"/>
                                 </div>
 
                                 <div class="elementoform">
                                 <label for="eps">EPS:</lable><br/>
                                     <input type="text" id="eps" name="eps" 
                                     placeholder="EPS del Beneficiario"
-                                    required="true"/>
+                                    required="true" value="{{ paraFormPaciente.13 }}"/>
                                 </div>
                             </div>
                             
@@ -128,19 +131,19 @@
                                 
                                 <div class="elementoform">
                                 <label for="tel">telefono:</lable>
-                                <input type="number" id="tel" name="tel" placeholder="escriba su telefono"/><br/>
+                                <input type="number" id="tel" name="tel" placeholder="escriba su telefono" value="{{ paraFormPaciente.7 }}"/><br/>
                                 </div>
 
                                 <div class="elementoform">
                                 <label for="mail">email:</lable>
                                 <input type="email" id="mail" name="email" 
-                                placeholder="escriba su email"/>
+                                placeholder="escriba su email" value="{{ paraFormPaciente.0 }}"/>
                                 </div>
 
                                 <div class="elementoform">
                                 <label for="bird">Fecha de Nacimiento:</lable>
                                 <input type="datetime" id="brid" name="bird" 
-                                placeholder="escriba su su fecha de nacimiento"/>
+                                placeholder="escriba su su fecha de nacimiento" value="{{ paraFormPaciente.3 }}"/>
                                 </div>
                             
                                 <div class="elementoform">
@@ -149,12 +152,14 @@
                                 <input type="radio" id="femenino" name="sexo" value="femenino"/><label>femenino.</lable>
                                 
                                 <input type="radio" id="masculino" name="sexo" value="masculino"/><label>masculino.</lable>
+                                <input type="radio" id="masculino" name="sexo" value="{{ paraFormPaciente.4 }}" checked/><label>{{ paraFormPaciente.4 }}</lable>
                                 <br>
                                 </div>
 
                                 <div class="elementoform">
                                 <lebel for="escivil"> Estado Civil</lebel><br/>
                                 <select id="escivil" name="escivil">
+                                    <option value="{{ paraFormPaciente.5 }}">{{ paraFormPaciente.5 }}</option>
                                     <option value="solter@">Solter@</option>
                                     <option value="casad@">Casad@</option>
                                     <option value="viud@">Viud@</option>
@@ -165,37 +170,38 @@
                                 <div class="elementoform">
                                 <label for="direccion">Direccion:</label>
                                 <input type="text" id="direccion" name="direccion" 
-                                placeholder="escriba su direccion">
+                                placeholder="escriba su direccion" value="{{ paraFormPaciente.8 }}">
                                 </div>
                                 
                                 <div class="elementoform">
                                 <label for="discapacidad">Discapacidad:</label>
                                 <input type="text" id="discapacidad" name="discapacidad" 
-                                placeholder="tiene alguna discapacidad?"><br>
+                                placeholder="tiene alguna discapacidad?" value="{{ paraFormPaciente.9 }}"><br>
                                 </div>
                                 
                                 <div class="elementoform">
                                 <label for="job">Ocupacion:</label>
                                 <input type="text" id="job" name="job" 
-                                placeholder="escriba su ocupacion">
+                                placeholder="escriba su ocupacion" value="{{ paraFormPaciente.6 }}">
                                 </div>
 
                                 <div class="elementoform">
                                 <label for="rh">rh:</label><br/>
                                 <input type="text" id="rh" name="rh" 
-                                placeholder="escriba su grupo sanguineo"><br>
+                                placeholder="escriba su grupo sanguineo" value="{{ paraFormPaciente.10 }}"><br>
                                 </div>
-
+                                
                             </div>               
                                 <br>
-                                <div class="botones">
-                                    <input type="submit" value="Nuevo Paciente"/> 
-                                    <input type="submit" value="Registrar"/>
-                                    <input type="reset" value="reiniciar formulario">
+                            <div class="botones">
+                                <input type="submit" value="Nuevo Paciente"/> 
+                                <input type="submit" value="Actualizar" formmethod="POST" formaction="/admin/actualizar/paciente/"/>
+                                <input type="reset" value="reiniciar formulario">
                             </div>
                     </form>
+                    
                 </div>
-
+                {% endif %}
 
                 </div>
             </div>
