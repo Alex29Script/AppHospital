@@ -21,7 +21,7 @@ app.register_blueprint(medico,url_prefix="/medico")
 app.register_blueprint(paciente,url_prefix="/paciente")
 
 
-
+#cambios
 app.secret_key=  b'_5#y2L"F4Q8z\n\xec]/'
 """
 app.config["SESSION_PERMANENT"] = True
