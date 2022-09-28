@@ -1,0 +1,137 @@
+html{
+    height: 100%;/*      abarque toda la pantalla         */
+}
+body{
+    background-color: #ffffff;
+    font-size: 16px;
+}
+.info{
+    text-align: justify;
+    float: left;
+    width: 50%;
+    overflow: auto;
+    
+}
+.login{
+    float: right;
+    width: 50%;
+    color: black;
+    
+}
+section{
+    
+    
+    position: relative;
+    color: #023e8a;
+    border-radius: 5px;
+    box-shadow: 1px 0 4px rgb(0,0,0,0.2);
+    margin:10px; 
+    padding: 15px;
+    height: 450px;
+}
+
+
+
+
+footer{
+    float: left;
+    width: 97%;
+    
+    clear:both;
+    padding: 20px;
+    text-align: center;
+    background-color: #03045e;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+.contenedor{/*     importamos la clase contenedor    */
+    /*     margen    */
+    margin: 10px auto;
+    /*     centrar formulario  */
+    width: 40%;
+    padding: 30px;
+    /*     fondo con trasparencia    
+    background: rgba(0, 0, 0, .15);*/
+    /*     redondeo de esquinas*/    
+    border-radius: 10px;
+
+
+}
+.contenedor h2{
+    margin: 0 0 30px;
+    padding: 0;
+    font-size: 30px;
+    color: #023e8a;
+    text-align: center;
+}
+.contenedor .elemento label{
+    color:#023e8a;
+
+
+}
+.contenedor .elemento input{
+    width: 100%;
+    padding: 10px 0px;
+    color: 0077b6;/* color del input */
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #023e8a;/*  color de los border*/
+    margin-bottom: 30px;
+}
+
+
+.contenedor .elemento input[type="submit"]{
+    color: white;
+    background-color: #023e8a;
+    border: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+    
+}
+
+.contenedor .boton button{
+    background-color: #023e8a;
+    border: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+    width: 100%;
+    color:azure;
+    
+}
+.contenedor a{
+    color:#0096c7;
+    display: flex;
+    justify-content: center;
+    
+}
+
+footer .pie{
+    float:left;
+    
+    width: 20%;
+    
+    padding: 1%;
+    
+    
+    
+    
+    
+}
+footer .pie img{
+    width: 30px;
+
+    
+}
+footer .pie a{
+    color: #ffffff;
+    
+}

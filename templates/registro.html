@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link href="./css/estilosreg.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="contenedor">
+        <h2>Formulario de Registro</h2>
+        <form id="Paciente1" name="formreg" method="get">
+            <div class="elemento">
+                <div class="infoLog">
+                    <h3>Datos para login</h3>
+                    
+                    <label for="IDUsuario">Cedula: </label>
+                    <input type="number" id="IDUsuario" name="idusuario" required="true" placeholder="su numero de cedula"/><br>
+                    
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required="true" placeholder="su nombre"/><br>
+                        
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" 
+                    placeholder="escriba sus apellidos"
+                    required="true"/><br>
+
+                    <label for="pass">Contraseña:</label>
+                    <input type="password" id="pass" name="pass" 
+                    placeholder="escriba su contraseña"
+                    required="true"/><br/>
+                    <label for="eps">EPS:</label>
+                        <input type="text" id="eps" name="eps" 
+                        placeholder="EPS del Beneficiario"
+                        required="true"/><br>
+                </div>
+                <div class="DatosPersonales">
+                    <h3>Datos Personales</h3>
+                    
+                    <label for="tel">Telefono:</label>
+                    <input type="number" id="tel" name="tel" placeholder="escriba su telefono"/><br/>
+            
+                    <label for="mail">E-mail:</label>
+                    <input type="email" id="mail" name="email" 
+                    placeholder="escriba su email"/><br/>
+                    <label for="bird">Fecha de Nacimiento:</label>
+                    <input type="datetime" id="brid" name="bird" 
+                    placeholder="escriba su su fecha de nacimiento"/><br/>
+                
+                    <lable>Genero:</lable>
+                    <br>   
+                    <input type="radio" id="femenino" name="sexo" value="femenino"/><label>Femenino.</label>
+                    <br>
+                    <input type="radio" id="masculino" name="sexo" value="masculino"/><label>Masculino.</label>
+                    <br>
+                    <lebel for="escivil"> Estado Civil</lebel>
+                    <select id="escivil" name="escivil">
+                        <option value="solter@">Solter@</option>
+                        <option value="casad@">Casad@</option>
+                        <option value="viud@">Viud@</option>
+                        <option value="unionlibre">Union Libre</option></select>
+                    <br>
+                    <br>
+                    <label for="direccion">Direccion:</label>
+                    <input type="text" id="direccion" name="direccion" 
+                    placeholder="escriba su direccion"><br>
+
+                    <label for="discapacidad">Discapacidad:</label>
+                    <input type="text" id="discapacidad" name="discapacidad" 
+                    placeholder="tiene alguna discapacidad?"><br>
+
+                    <label for="job">Ocupacion:</label>
+                    <input type="text" id="job" name="job" 
+                    placeholder="escriba su ocupacion"><br>
+
+                    <label for="rh">RH:</label>
+                    <input type="text" id="rh" name="rh" 
+                    placeholder="escriba su grupo sanguineo"><br>
+                    
+                </div>               
+                    <br>
+                    <div class="botones">
+                        <input type="submit" value="Loguearse"/>
+                        <input type="reset" value="reiniciar formulario">
+                    </div>
+        </form>
+        <div class="boton">
+            <button  type="submit" name="button"   onclick="window.location.href='./index.html';">Volver a la Página de Inicio</button>
+
+        </div>
+     </div>
+</body>
+</html>

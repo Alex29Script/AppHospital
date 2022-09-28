@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link href="../static/css/estilos.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="info">
+    <section>
+        <h1>Informacion general</h1>
+        <p> Hospital General de Barranquilla: Somos una compañía de salud y bienestar en Colombia. Cuidamos integralmente la vida a nuestros afiliados y pacientes, tenemos un Centro Médicos de bienestar; servicios de salud transversales y de consultas médicas.
+            <br> <br> Comprometidos con las comunidades y la región en el que operamos, en Hospital General de Barranquilla seguiremos innovando para ofrecer calidad en salud, promoviendo estilos de vida saludables y seguridad de nuestros pacientes.
+            
+        </p>
+    </section>
+    </div>
+    <div class="login">
+    <section>
+        <div class="contenedor">
+            <h2>Login</h2>
+            <form id="forma" name="forma" method="POST" action="/login" >
+                <div class="elemento">
+                    <label for="usuario">Usuario</label>
+                    <input type="number" id="usuario" name="usuario" required="true"/>
+    
+                </div>
+                <div class="elemento">
+                    <label for="contraseña">Contraseña</label>
+                    <input type="password" id="contraseña" name="contraseña" required="true"/>
+                </div>
+                <div class="elemento">
+                    <input type="submit" value="Iniciar sesión"/>
+    
+                </div>
+                
+    
+    
+    
+            </form>
+            <a href="#">olvide mi contraseña</a>
+            <div class="boton">
+                <button  type="submit" name="button"   onclick="window.location.href='/formregistrarce';">Registrarse</button>
+    
+            </div>
+    
+    
+        </div>
+    </section>
+    </div>
+    </body>
+    <footer>
+        <div class="pie">
+            <p>Cr 50 N79-86</p>
+            <p>Hospital XXXX</p>
+            <p>Alto Prado Barranquilla</p>
+        </div>
+        <div class="pie">
+            <div>
+            <ul>Servicios<ul>
+                <li>Servicio 1</li>
+                <li>Servicio 2</li>
+                <li>Servicio 3</li>
+                <li>Servicio 4</li>
+            </ul>
+            </ul>
+        </div>
+        </div>
+        <div class="pie">
+            <br>
+            
+            <br>
+            <a href="#">Política de servicios</a><br>
+            <a href="#">Política de Habeas Data</a>
+    
+        </div class="pie">
+
+        <div class="pie">
+            <div >
+                <img src="../static/img/facebook2.png">
+                <img src="../static/img/wsp1.png">
+
+            </div>
+            <p>Hospital xxx 2022</p>
+            <p>Todos los derechos reservados ©</p>
+        </div>
+</footer>
+</html>

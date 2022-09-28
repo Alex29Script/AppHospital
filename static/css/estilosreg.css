@@ -1,0 +1,95 @@
+body{
+    width: 100%;
+    background: linear-gradient(#f5f5f5,#dde0f8);
+    margin: 0;/*     sin margen     */
+    padding: 0;
+    
+}
+.contenedor{
+    background-color: blue;
+    margin: 50px auto;
+    /*     centrar formulario  */
+    width: 40%;
+    padding: 30px;
+    /*     fondo con trasparencia    */
+    background: rgba(0, 0, 0, .15);
+    /*     redondeo de esquinas    */
+    border-radius: 10px;
+    
+}
+.contenedor h2{
+    margin: 0 0 30px;
+    padding: 0;
+    font-size: 30px;
+    color: #023e8a;
+    text-align: center;
+   
+}
+.contenedor .elemento input{
+    width: 100%;
+    
+    padding: 10px 0px;
+    color: rgb(14, 17, 17);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 30px;
+}
+.contenedor .elemento input[type="radio"]{
+    width: 10%;
+}
+
+.contenedor .elemento input[type="submit"]{
+    background-color: #023e8a;
+    border: none;
+    color: #fff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+    
+}
+.contenedor .elemento input[type="reset"]{
+    background-color: #023e8a;
+    color: #fff;
+    border: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+    
+}
+.contenedor .elemento label{
+    color:#000000;
+
+
+}
+
+.boton{
+
+background-color: #023e8a;
+    border: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+    width: 95%;
+    color:azure;
+}
+button{
+    background-color: #023e8a;
+    border: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    
+    border-radius: 10px;
+    width: 95%;
+    color:azure;
+}

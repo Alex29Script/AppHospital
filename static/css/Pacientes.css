@@ -1,0 +1,115 @@
+html{
+    height: 100%;/*      abarque toda la pantalla         */
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+body{
+    background-color:#ffffff;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: rgba(151, 196, 244, 0.25);
+}
+.imgT{
+    color: aliceblue;
+    font-size: 150%;
+    text-align: center;
+   
+}
+img {
+    display: block;
+    margin: 0 auto;
+    max-width:10%;
+    width: 35%;
+
+  }
+
+nav{
+    
+    width: 20%;
+    float: left;
+    position: sticky;
+    
+    margin: 0 px;
+    background-color: #38a6f5;
+    padding: 10px 10px 20% 10px;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+
+}
+nav a{
+    border-radius: 10px;
+    height: 100%;
+    color: rgb(231, 236, 240);
+    margin: 10px;
+    padding: 10px;
+    text-decoration: none;
+    /*        convertir a tipo bloque       */
+    display: block;
+    transition: all 0.5s ease;
+    font-size: 20px;
+
+}
+
+nav a:hover{
+    list-style: none;
+    text-decoration: none;
+    background: #042d62;
+    background-color: rgb(12, 53, 129);
+    overflow: hidden;
+    width: 100; 
+    font-size: 30px;
+    transition: all 0.5s ease;
+
+}
+table {
+    border-collapse: collapse;
+}
+ 
+table,
+th,
+td {
+    border: 1px solid black;
+}
+ 
+th,
+td {
+    padding: 5px;
+}
+.tab{
+    width: 40%;
+    color: #023e8a;
+    padding: 5px;
+    float: left;
+    border-radius: 5px;
+    box-shadow: 1px 0 4px rgb(0,0,0,0.2);
+    margin: 10px; 
+    padding: 30px;
+}
+footer{
+    float: left;
+    width: 97%;
+    
+    clear:both;
+    padding: 20px;
+    text-align: center;
+    background-color: #2b2ec2;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+footer .pie{
+    float:left;
+    
+    width: 20%;
+    
+    padding: 1%;   
+}
+footer .pie img{
+    width: 30px;
+   
+}
+footer .pie a{
+    color: #ffffff;   
+}

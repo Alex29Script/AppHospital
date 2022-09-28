@@ -1,0 +1,153 @@
+html{
+    height: 100%;/*      abarque toda la pantalla         */
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+body{
+    background-color:#ffffff;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: rgba(151, 196, 244, 0.25);
+    text-align: left;
+}
+.imgT{
+    color: aliceblue;
+    font-size: 150%;
+    text-align: center;
+   
+}
+img {
+    display: block;
+    margin: 0 auto;
+    max-width:10%;
+    width: 35%;
+
+  }
+nav{
+    
+    width: 20%;
+    float: left;
+    position: sticky;
+    margin: 0px;/*margen parte superior del menu*/
+    background-color: #38a6f5;
+    padding: 10px 10px 20% 10px;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+
+}
+/*menu*/
+nav a{
+    border-radius: 10px;
+    height: 100%;
+    color: rgb(231, 236, 240);
+    margin: 10px;
+    padding: 10px;
+    text-decoration: none;
+    /*        convertir a tipo bloque       */
+    display: block;
+    transition: all 0.5s ease;
+    font-size: 20px;
+
+}
+
+nav a:hover{
+    list-style: none;
+    text-decoration: none;
+    background: #042d62;
+    background-color: rgb(12, 53, 129);
+    overflow: hidden;
+    width: 100; 
+    font-size: 30px;
+    transition: all 0.5s ease;
+
+}
+
+.elementoform{
+    width: 30%;
+    height: 100%;
+    float: left;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 0 4px rgb(0,0,0,0.2);
+    text-align: center;
+    
+}
+.elementoform input{
+    border: none;
+    width: 100%;
+    color: rgb(14, 17, 17);
+    background: transparent;
+    border: none;
+    border-bottom: #caf0f8 solid 1px;
+    text-align: center;
+     
+}
+.contenedor{
+
+    margin: 10px auto;
+    /*     centrar formulario  */
+    width: 60%;
+    height: 100%;
+    padding: 10px;
+    /*     fondo con trasparencia    */
+    
+    /*     redondeo de esquinas    */
+    border-radius: 10px;
+    float: left;
+    border-radius: 5px;
+    box-shadow: 1px 0 4px rgb(0,0,0,0.2);
+    margin-left: 10px;
+
+}
+input[type="submit"]{
+    
+    background-color: #023e8a;
+    color: #fff;
+    border: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+}input[type="reset"]{
+    background-color: #023e8a;
+    color: #fff;
+    border: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+footer{
+    float: left;
+    width: 97%;
+    
+    clear:both;
+    padding: 20px;
+    text-align: center;
+    background-color: #2b2ec2;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+footer .pie{
+    float:left;
+    
+    width: 20%;
+    
+    padding: 1%;   
+}
+footer .pie img{
+    width: 30px;
+   
+}
+footer .pie a{
+    color: #ffffff;   
+}

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>app</title>
+    <link href="../static/css/estiloappForm.css" rel="stylesheet">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</head>
+<section class="cabecera">
+    <div class="imgT"><img src="./img/log.png"></img>
+        <h1>Hospital General de Barranquilla</h1>
+            
+    </div>
+</section>
+<body>
+    <nav>
+        <div class="imgT"><img src="./img/log.png"></img>
+        
+        </div>
+        <a data-bs-toggle="collapse" href="#collapseOne">Editar Pacientes</a>
+        <a data-bs-toggle="collapse" href="#collapseTwo">Editar Medicos</a>
+        <a data-bs-toggle="collapse" href="#collapseThree">Citas</a>
+        <a data-bs-toggle="collapse" href="#collapseFour">Historia Clinica</a>
+        <div class="cerrar">
+        <a href="#">Cerrar sesión </a>
+        </div>
+
+    </nav>
+    
+    <section>
+        <h1>tabla o formulario</h1>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Pacientes
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                <!-- Aquí puedes escribir el formulario de cliente -->
+                <h3 name="parte1" id="parte1">Formulario para editar cliente</h3>
+                <!-- Aquí puedes escribir el formulario de busqueda para cliente -->
+                <div class="contenedor">
+                    <form action="#" id="frbp1" name="frbp" method="get"> 
+                    <div class="elementoform" >
+                        <label for="IDPaciente"> ID Paciente</label> 
+                        <input type="number"  id="IDPaciente"  required="true" name="IDPaciente"/>               
+                        <input type="submit" value="editar"/>
+                        <input type="submit" value="crear"/> 
+                        <input type="submit" value="eliminar"/> 
+
+                    </div>
+                    
+                    </form>
+                    <div class="contenedorTabla">
+                        <table class="tab">
+                            <thead>
+                                <tr>
+                                    <th>Documento</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for paciente in Todos_Pacientes %}
+                                <tr>
+                                    <td> {{ paciente.0 }}  </td>
+                                    <td> {{ paciente.1 }}  </td>
+                                    <td> {{ paciente.2 }}  </td>
+                                    <td> <a href="admin/editar/{{paciente.0}}">editar</a> <a href="admin/eliminar/{{paciente.0}}">eliminar</a>  </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>   
+                    
+                    </div>
+                </div>
+                
+
+
+
+
+                <div class="contenedor">
+                    <form id="Paciente2" name="formreg2" method="get">
+                        <div class="elemento">
+                            <div class="infoLog">
+                                <h3>Datos para login</h3>
+                                <div class="elementoform">
+                                <label for="IDUsuario">Cedula: </label>
+                                <input type="number" id="IDUsuario" name="idusuario" required="true" placeholder="su numero de cedula"/><br>
+                                </div>
+
+                                <div class="elementoform">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" id="nombre" name="nombre" required="true" placeholder="su nombre"/><br>
+                                </div>
+
+
+                                <div class="elementoform">
+                                <label for="apellido">Apellido:</lable>
+                                <input type="text" id="apellido" name="apellido" 
+                                placeholder="escriba sus apellidos"
+                                required="true"/>
+                                </div>
+                                
+                                <div class="elementoform">
+                                <label for="pass">Contraseña:</label>
+                                <input type="password" id="pass" name="pass" 
+                                placeholder="escriba su contraseña"
+                                required="true"/>
+                                </div>
+
+                                <div class="elementoform">
+                                <label for="eps">EPS:</lable><br/>
+                                    <input type="text" id="eps" name="eps" 
+                                    placeholder="EPS del Beneficiario"
+                                    required="true"/>
+                                </div>
+                            </div>
+                            
+                            <div class="DatosPersonales">
+                                <h3>Datos Personales</h3>
+                                
+                                <div class="elementoform">
+                                <label for="tel">telefono:</lable>
+                                <input type="number" id="tel" name="tel" placeholder="escriba su telefono"/><br/>
+                                </div>
+
+                                <div class="elementoform">
+                                <label for="mail">email:</lable>
+                                <input type="email" id="mail" name="email" 
+                                placeholder="escriba su email"/>
+                                </div>
+
+                                <div class="elementoform">
+                                <label for="bird">Fecha de Nacimiento:</lable>
+                                <input type="datetime" id="brid" name="bird" 
+                                placeholder="escriba su su fecha de nacimiento"/>
+                                </div>
+                            
+                                <div class="elementoform">
+                                <label>genero:</lable>
+                                <br>   
+                                <input type="radio" id="femenino" name="sexo" value="femenino"/><label>femenino.</lable>
+                                
+                                <input type="radio" id="masculino" name="sexo" value="masculino"/><label>masculino.</lable>
+                                <br>
+                                </div>
+
+                                <div class="elementoform">
+                                <lebel for="escivil"> Estado Civil</lebel><br/>
+                                <select id="escivil" name="escivil">
+                                    <option value="solter@">Solter@</option>
+                                    <option value="casad@">Casad@</option>
+                                    <option value="viud@">Viud@</option>
+                                    <option value="unionlibre">Union Libre</option></select>
+                            
+                                </div>
+                                
+                                <div class="elementoform">
+                                <label for="direccion">Direccion:</label>
+                                <input type="text" id="direccion" name="direccion" 
+                                placeholder="escriba su direccion">
+                                </div>
+                                
+                                <div class="elementoform">
+                                <label for="discapacidad">Discapacidad:</label>
+                                <input type="text" id="discapacidad" name="discapacidad" 
+                                placeholder="tiene alguna discapacidad?"><br>
+                                </div>
+                                
+                                <div class="elementoform">
+                                <label for="job">Ocupacion:</label>
+                                <input type="text" id="job" name="job" 
+                                placeholder="escriba su ocupacion">
+                                </div>
+
+                                <div class="elementoform">
+                                <label for="rh">rh:</label><br/>
+                                <input type="text" id="rh" name="rh" 
+                                placeholder="escriba su grupo sanguineo"><br>
+                                </div>
+
+                            </div>               
+                                <br>
+                                <div class="botones">
+                                    <input type="submit" value="Registrar"/>
+                                    <input type="reset" value="reiniciar formulario">
+                            </div>
+                    </form>
+                </div>
+
+
+                </div>
+            </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Medicos
+                </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="contenedor">
+                        <form action="#" id="frbm1" name="frbm1" method="get"> 
+                            <div class="elementoform" >
+                                <h4>Buscar Medico</h4>
+                                <label for="IDMedico"> ID Medico</label> 
+                                <input type="number" id="IDMedico"  required="true" name="IDPaciente"/>               
+                                <input type="submit" value="editar"/>
+                                <input type="submit" value="crear"/> 
+                                <input type="submit" value="eliminar"/>
+                            </div>
+                        </form>
+                        
+                        <div class="contenedorTabla">
+                            <table class="tab">
+                                <thead>
+                                    <tr>
+                                        <th>Documento</th>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Especialidad</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for medico in Todos_Medicos %}
+                                        <tr>
+                                        <td> {{ medico.0 }}  </td>
+                                        <td> {{ medico.1 }}  </td>
+                                        <td> {{ medico.2 }}  </td>
+                                        <td> No Establecido </td>
+                                        <td> <a href="admin/editar/{{medico.0}}">editar</a> <a href="admin/eliminar/{{medico.0}}">eliminar</a>  </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>   
+                        
+                        </div>
+
+
+                    </div>
+                    <div class="contenedor">
+                        <form id="med2" name="med2" method="get">
+                            <div class="elemento">
+                                <div class="infoLog">
+                                    <h3>Datos para login</h3>
+                                    <div class="elementoform">
+                                    <label for="IDUsuario">Cedula: </label>
+                                    <input type="number" id="IDUsuario" name="idusuario" required="true" placeholder="su numero de cedula"/><br>
+                                    </div>
+        
+                                    <div class="elementoform">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" id="nombre" name="nombre" required="true" placeholder="su nombre"/><br>
+                                    </div>
+        
+        
+                                    <div class="elementoform">
+                                    <label for="apellido">Apellido:</lable>
+                                    <input type="text" id="apellido" name="apellido" 
+                                    placeholder="escriba sus apellidos"
+                                    required="true"/>
+                                    </div>
+                                    
+                                    <div class="elementoform">
+                                    <label for="pass">Contraseña:</label>
+                                    <input type="password" id="pass" name="pass" 
+                                    placeholder="escriba su contraseña"
+                                    required="true"/>
+                                    </div>
+        
+                                    <div class="elementoform">
+                                    <label for="espM">Especilidad:</lable><br/>
+                                        <input type="text" id="espM" name="espM" 
+                                        placeholder="Especialidad en Medicina"
+                                        required="true"/>
+                                    </div>
+                                </div>
+                                
+                                <div class="DatosPersonales">
+                                    <h3>Datos Personales</h3>
+                                    
+                                    <div class="elementoform">
+                                    <label for="tel">telefono:</lable>
+                                    <input type="number" id="tel" name="tel" placeholder="escriba su telefono"/><br/>
+                                    </div>
+        
+                                    <div class="elementoform">
+                                    <label for="mail">email:</lable>
+                                    <input type="email" id="mail" name="email" 
+                                    placeholder="escriba su email"/>
+                                    </div>
+        
+                                    <div class="elementoform">
+                                    <label for="bird">Fecha de Nacimiento:</lable>
+                                    <input type="datetime" id="brid" name="bird" 
+                                    placeholder="escriba su su fecha de nacimiento"/>
+                                    </div>
+                                
+                                    <div class="elementoform">
+                                    <label>genero:</lable>
+                                    <br>   
+                                    <input type="radio" id="femenino" name="sexo" value="femenino"/><label>femenino.</lable>
+                                    
+                                    <input type="radio" id="masculino" name="sexo" value="masculino"/><label>masculino.</lable>
+                                    <br>
+                                    </div>
+        
+                                    <div class="elementoform">
+                                    <lebel for="escivil"> Estado Civil</lebel><br/>
+                                    <select id="escivil" name="escivil">
+                                        <option value="solter@">Solter@</option>
+                                        <option value="casad@">Casad@</option>
+                                        <option value="viud@">Viud@</option>
+                                        <option value="unionlibre">Union Libre</option></select>
+                                   
+                                    </div>
+                                    
+                                    <div class="elementoform">
+                                    <label for="direccion">Direccion:</label>
+                                    <input type="text" id="direccion" name="direccion" 
+                                    placeholder="escriba su direccion">
+                                    </div>
+                                    
+                                    <div class="elementoform">
+                                    <label for="discapacidad">Discapacidad:</label>
+                                    <input type="text" id="discapacidad" name="discapacidad" 
+                                    placeholder="tiene alguna discapacidad?"><br>
+                                    </div>
+                                    
+                                    <div class="elementoform">
+                                    <label for="job">Ocupacion:</label>
+                                    <input type="text" id="job" name="job" 
+                                    placeholder="escriba su ocupacion">
+                                    </div>
+        
+                                    <div class="elementoform">
+                                    <label for="rh">rh:</label><br/>
+                                    <input type="text" id="rh" name="rh" 
+                                    placeholder="escriba su grupo sanguineo"><br>
+                                    </div>
+        
+                                </div>               
+                                    <br>
+                                    <div class="botones">
+                                        <input type="submit" value="Registrar"/>
+                                        <input type="reset" value="reiniciar formulario">
+                                </div>
+                        </form>
+                    </div>                 
+                </div>
+            </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Citas
+                </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="contenedor">
+                        <form action="#" id="frcita1" name="frbc1" method="get"> 
+                        <div class="elementoform" >
+                            <label for="IDCitas"> ID Citas</label> 
+                            <input type="number"  id="IDCitas"  required="true" name="IDCitas"/>               
+                            <input type="submit" value="editar"/>
+                            <input type="submit" value="crear"/> 
+                            <input type="submit" value="eliminar"/> 
+    
+                        </div>
+                        </form>
+
+                        <div class="contenedorTabla">
+                            <table class="tab">
+                                <thead>
+                                    <tr>
+                                        <th>ID Cita</th>
+                                        <th>Paciente</th>
+                                        <th>Medico</th>
+                                        <th>Fecha</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for cita in Todos_citas %}
+                                    <tr>
+                                        <td>{{cita.0}} </td>
+                                        <td>CC{{cita.2}} {{cita.5}}</td>
+                                        <td>CC{{cita.3}} {{cita.6}}</td>
+                                        <td>{{cita.4}}</td>
+                                        
+                                        <td> <a href="admin/editar/cita/{{cita.0}}">editar</a> <a href="admin/editar/citas/{{cita.0}}">eliminar</a>  </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>   
+                        
+                        </div>
+
+
+                    </div>
+                    <div class="contenedor">
+                        <form id="citas1" name="citas1" method="get">
+                            <div class="elemento">
+                                <div class="infoLog">
+                                    <h3>Datos para Citas</h3>
+
+                                    <div class="elementoform">
+                                        <label for="IDCitasB">IDCita: </label>
+                                        <input type="number" readonly="true" id="IDCitasB" name="IDCitasB" required="true" placeholder="su numero de la cita"/><br>
+                                    </div>
+
+                                    <div class="elementoform">
+                                        <label for="IDmed">ID Medico: </label>
+                                        <input type="number" id="IDmed" name="IDmed"/><br>
+                                    </div>
+
+                                    <div class="elementoform">
+                                        <label for="nmed">Nombre Del Medico: </label>
+                                        <input type="text" id="nmed" name="nmed" readonly="true"/><br>
+                                    </div>
+
+                                    <div class="elementoform">
+                                        <label for="IDPaciente">ID Paciente: </label>
+                                        <input type="number" id="IDPaciente" name="IDPaciente"/><br>
+                                    </div>
+
+                                    <div class="elementoform">
+                                        <label for="npaciente">Nombre del Paciente: </label>
+                                        <input type="text" id="npaciente" name="npaciente" readonly="true"/><br>
+                                    </div>
+
+                                  
+                                    <div class="elementoform">
+                                        <label for="puntaje">Puntaje</label>
+                                        <input type="number" id="puntaje" name="puntaje"/><br>
+                                    </div>
+
+                                    
+
+                                    <div class="elementoform">
+                                        <label for="fecha">Fecha</label>
+                                        <input type="datetime-local" id="fecha" name="fecha"/><br>
+                                    </div>
+
+                                    <div class="elementoform">
+                                    <label for="calificacion"> Comentario </label>
+                                    <textarea id="calificacion" name="calificacion" rows="5" cols="30">
+                                    </textarea>
+                                    </div>
+
+                                    
+
+
+
+                                    
+                                    <div class="botones">
+                                        <input type="submit" value="Registrar"/>
+                                        <input type="reset" value="reiniciar formulario">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Historia Clinica
+                  </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+
+                    <div class="contenedor">
+                        <form action="#" id="historiaC" name="historiaC" method="get"> 
+                        <div class="elementoform" >
+                            <label for="IDHistoria"> ID Historia Clinica</label> 
+                            <input type="number"  id="IDHistoria"  required="true" name="IDHistoria"/>               
+                            <input type="submit" value="editar"/>
+                            <input type="submit" value="crear"/> 
+                            <input type="submit" value="eliminar"/> 
+    
+                        </div>
+                        </form>
+                        <div class="contenedorTabla">
+                            <table class="tab">
+                                <thead>
+                                    <tr>
+                                        <th>ID Historia Clinica</th>
+                                        <th>IDCita</th>
+                                        <th>Paciente</th>
+                                        <th>Medico</th>
+                                        <th>Diagnostico </th>
+                                        <th>Acciones</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for hs in Todos_hs %}
+                                    <tr>
+                                        <td>{{hs.0}}</td>
+                                        <td>{{hs.2}}</td>
+                                        <td>C.C.{{hs.2}} {{hs.5}}</td>
+                                        <td>C.C.{{hs.3}} {{hs.6}}</td>
+                                        <td>{{hs.4}}</td>
+                                        <td> <a href="admin/editar/histc/{{hs.0}}">editar</a> <a href="admin/editar/histc/{{hs.0}}">eliminar</a>  </td>
+                                    </tr>
+                                    {%endfor%}
+                                </tbody>
+                            </table>   
+                        
+                        </div>
+                    </div>
+
+                    <div class="contenedor">
+                        <form id="historiac2" name="historiac2" method="get">
+                            <div class="elemento">
+                                <div class="infoLog">
+                                    <h3>Datos Historia Clinica</h3>
+
+                                    <div class="elementoform">
+                                        <label for="IDHistoria">ID Historia Clinica: </label>
+                                        <input type="number" readonly="true" id="IDHistoria" name="IDHistoria" required="true" /><br>
+                                    </div>
+
+                                    <div class="elementoform">
+                                        <label for="IDCita">ID Cita: </label>
+                                        <input type="number" id="IDCita" name="IDCita"/><br>
+                                    </div>
+
+                                    <div class="elementoform">
+                                        <label for="IDmed">ID Medico: </label>
+                                        <input type="number" id="IDmed" name="IDmed"/><br>
+                                    </div>
+
+                                    <div class="elementoform">
+                                        <label for="IDPaciente">ID Paciente: </label>
+                                        <input type="number" id="IDPaciente" name="IDPaciente"/><br>
+                                    </div>
+
+                                    <div class="elementoform">
+                                        <label for="ndiag">Nombre del Diagnostico: </label>
+                                        <input type="text" id="ndiag" name="ndiag" /><br>
+                                    </div>
+
+                                    <div class="elementoform">
+                                        <label for="nEnfer"> Enfermedad  </label>
+                                        <input type="text" id="nEnfer" name="nEnfer" /><br>
+                                    </div>
+
+
+                                    <div class="elementoform">
+                                    <label for="des"> Descripción  </label>
+                                    <textarea id="des" name="des" rows="5" cols="30">
+                                    </textarea>
+                                    </div>
+
+                                    <div class="elementoform">
+                                        <label for="trata"> Tratamiento  </label>
+                                        <textarea id="trata" name="trata" rows="5" cols="30">
+                                        </textarea>
+                                    </div>
+    
+
+
+
+                                    
+                                    <div class="botones">
+                                        <input type="submit" value="Registrar"/>
+                                        <input type="reset" value="reiniciar formulario">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+ 
+                  </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+    <div class="fr">
+        
+        <form class="formUserLog">
+            <h3> Usuario</h3>
+            <label for="id">ID </label>
+            <input id="id" name="id" readonly="true"><br>
+            <label for="user">Usuario</label>
+            <input id="user" name="user" readonly="true"><br> 
+            <label for="tipouser">Tipo de Usuario</label>
+            <input id="tipouser" name="tipouser" readonly="true"><br> 
+
+        </form>
+    </div>
+    <footer>
+        <div class="pie">
+            <p>Cr 50 N79-86</p>
+            <p>Hospital General de Barranquilla</p>
+            <p>Alto Prado Barranquilla</p>
+        </div>
+        <div class="pie">
+            <div>
+            <ul>Servicios<ul>
+                <li>Servicio 1</li>
+                <li>Servicio 2</li>
+                <li>Servicio 3</li>
+                <li>Servicio 4</li>
+            </ul>
+            </ul>
+        </div>
+        </div>
+        <div class="pie">
+            <br>
+            
+            <br>
+            <a href="#">Política de servicios</a><br>
+            <a href="#">Política de Habeas Data</a>
+    
+        </div class="pie">
+
+        <div class="pie">
+            <div >
+                <img src="./img/facebook2.png">
+                <img src="./img/wsp1.png">
+
+            </div>
+            <p>Hospital General de Barranquilla</p>
+            <p>Todos los derechos reservados ©</p>
+        </div>
+    </footer>   
+
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        var anchor = window.location.hash;
+        $(anchor).collapse('toggle');
+    });
+</script>
