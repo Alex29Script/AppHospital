@@ -118,13 +118,16 @@ class superControlador:
             conexion.close()
 
     def actualizarPaciente(self,infopaciente=list()):
-        conexion=sqlite3.connect(Conexion.url)
-        cursor=conexion.cursor()
-        cursor.execute('''
-                        UPDATE persona 
-                        SET  idusuario= %s,nombres=%s,apellidos=%s,fechanacimiento=%s,genero=%s,estadocivil=%s,ocupacion=%s,
-                        telefono=%s,direccion=%s,discapacidad=%s,rh=%s,eps=%s
-                        WHERE idusuario=
-                        
-                        ''' %id)
-        
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            datos=(infopaciente[0], infopaciente[1], infopaciente[2], infopaciente[3], infopaciente[4], infopaciente[5], infopaciente[6], infopaciente[7],infopaciente[8],infopaciente[9],infopaciente[10],infopaciente[11],infopaciente[12],infopaciente[0])
+            cursor.execute('UPDATE persona SET  idusuario=?,nombres=?,apellidos=?,fechanacimiento=?,genero=?,estadocivil=?,ocupacion=?,telefono=?,direccion=?,discapacidad=?,rh=?,eps=?,email=? WHERE idusuario=?', datos )
+            conexion.commit()
+            cursor.close()
+            conexion.close()
+        except:
+            print("usuario no encontrado o errores en actualizarPaciente-superUsurio")
+        finally:
+            cursor.close()
+            conexion.close()

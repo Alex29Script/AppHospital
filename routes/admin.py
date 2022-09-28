@@ -77,7 +77,8 @@ def actualizarPaciente():
     pacienteLista.append(request.form["email"])
     pacienteLista.append(request.form["pass"])
     print(pacienteLista)
-
+    controladorS=superControlador()
+    controladorS.actualizarPaciente(pacienteLista)
     return "actualizar"
 
 
