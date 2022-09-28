@@ -1,5 +1,5 @@
 
-from flask import Blueprint, session,render_template,redirect
+from flask import Blueprint, session,render_template,redirect,request
 from routes.controlador.superusuario.super import superControlador
 
 
@@ -23,6 +23,23 @@ def mostrarAdmin():
         print("errores en aca en mostrarAdmin")
         return redirect("/")
 
-@superU.route("/saludar")
+@superU.route("/eliminar/paciente/", methods=["POST"])
+def eliminar():
+    if session["tipoUsuario"]=="superusuario":
+        IDPaciente=request.form["IDPaciente"]
+        print(IDPaciente)
+        controladorS=superControlador()
+        controladorS.eliminarPaciente(IDPaciente)
+        return redirect("/admin/")
+        
+@superU.route("/eliminar/paciente/tabla/<string:id>", methods=["GET"])        
+def eliminarTabla(id):
+    if session["tipoUsuario"]=="superusuario":
+        print(id)
+        controladorS=superControlador()
+        controladorS.eliminarPaciente(id)
+        return redirect("/admin/")
+
+@superU.route("/eliminar", methods=["get"])
 def saludar():
-    return "Hola soy el admin"
+    return "saludo"

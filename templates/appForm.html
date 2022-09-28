@@ -46,13 +46,12 @@
                 <h3 name="parte1" id="parte1">Formulario para editar cliente</h3>
                 <!-- Aquí puedes escribir el formulario de busqueda para cliente -->
                 <div class="contenedor">
-                    <form action="#" id="frbp1" name="frbp" method="get"> 
+                    <form action="" id="frbp1" name="frbp" method="GET"> 
                     <div class="elementoform" >
                         <label for="IDPaciente"> ID Paciente</label> 
                         <input type="number"  id="IDPaciente"  required="true" name="IDPaciente"/>               
                         <input type="submit" value="editar"/>
-                        <input type="submit" value="crear"/> 
-                        <input type="submit" value="eliminar"/> 
+                        <input type="submit" value="eliminar"  formmethod="POST" formaction="/admin/eliminar/paciente/"/> 
 
                     </div>
                     
@@ -73,7 +72,7 @@
                                     <td> {{ paciente.0 }}  </td>
                                     <td> {{ paciente.1 }}  </td>
                                     <td> {{ paciente.2 }}  </td>
-                                    <td> <a href="admin/editar/{{paciente.0}}">editar</a> <a href="admin/eliminar/{{paciente.0}}">eliminar</a>  </td>
+                                    <td> <a href="admin/editar/{{paciente.0}}">editar</a> <a href="/admin/eliminar/paciente/tabla/{{paciente.0}}" method="POST">eliminar</a>  </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -190,6 +189,7 @@
                             </div>               
                                 <br>
                                 <div class="botones">
+                                    <input type="submit" value="Nuevo Paciente"/> 
                                     <input type="submit" value="Registrar"/>
                                     <input type="reset" value="reiniciar formulario">
                             </div>
