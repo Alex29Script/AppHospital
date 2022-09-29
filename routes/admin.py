@@ -1,4 +1,3 @@
-
 from flask import Blueprint, session,render_template,redirect,request
 from routes.controlador.superusuario.super import superControlador
 
@@ -114,18 +113,41 @@ def eliminarMedico(id):
     controladorS=superControlador()
     controladorS.eliminarMedico(id)
     return redirect("/admin")
-
+#crear Medico
 @superU.route("/crear/medicofromulario/", methods=["POST"])
 def formularioMedico():
     idMedico=[request.form["IDMedico"]]
     return render_template("crearMedicoAdmin.html", Amedico=idMedico)
 
+@superU.route("/crear/nuevomedico/", methods=["POST"])
+def crearNuevoMedico():
+    infoMedico=dicInfoMedico()
+    controladorS=superControlador()
+    controladorS.crearMedico(infoMedico)
+    return redirect("/admin")
 
+##--Citas--##
 
+#eliminar
+@superU.route("/eliminar/cita/<string:id>", methods=["GET"])
+def eliminarCita(id):
+    controladorS=superControlador()
+    controladorS.eliminarCita(id)
+    return redirect("/admin")
 
+@superU.route("/buscarCita/<string:id>", methods=["GET"])
+def buscarCita(id):
+    controladorS=superControlador()
+    cita=controladorS.buscarCita(id)
+    tPaciente,tMedicos,tcitas2,tHS=dataTable()
+    return render_template("appForm.html",citaRender=cita,Todos_Pacientes=tPaciente, Todos_Medicos=tMedicos,Todos_citas=tcitas2,Todos_hs=tHS)
 
-
-
+@superU.route("/actualizar/citas/", methods=["POST"])
+def actualizarCita():
+    infoCita=dicInfoCita()
+    controladorS=superControlador()
+    controladorS.actualizarCita(infoCita)
+    return "actualizada"
 
 
 
@@ -174,3 +196,35 @@ def tomarInfoMedico():
     medico.append(request.form["job"])
     medico.append(request.form["rh"])
     return medico
+
+def dicInfoMedico():
+    medico={}
+    medico={
+        "id":request.form["idusuario"],
+        "nombre":request.form["nombre"],
+        "apellido":request.form["apellido"],
+        "pass":request.form["pass"],
+        "especialidad":request.form["espM"],
+        "tel":request.form["tel"],
+        "email":request.form["email"],
+        "bird":request.form["bird"],
+        "sexo":request.form["sexo"],
+        "escivil":request.form["escivil"],
+        "direccion":request.form["direccion"],
+        "tp":request.form["tp"],
+        "job":request.form["job"],
+        "rh":request.form["rh"]
+        }
+    return medico
+
+def dicInfoCita():
+    cita={}
+    cita={
+        "id":request.form["IDCitasB"],
+        "fecha":request.form["fecha"],
+        "puntaje":request.form["puntaje"],
+        "comentarios":request.form["calificacion"],
+        "idpaciente":request.form["IDPaciente"],
+        "idmedico":request.form["IDmed"]
+        }
+    return cita

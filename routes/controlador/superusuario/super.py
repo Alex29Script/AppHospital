@@ -1,3 +1,4 @@
+from pickle import NONE
 import sqlite3
 
 from routes.controlador.conexion.conexion import Conexion
@@ -195,6 +196,83 @@ class superControlador:
             conexion.commit()
         except:
             print("usuario no encontrado o errores en eliminarMedico-superUsurio")
+        finally:
+            cursor.close()
+            conexion.close()
+
+    def crearMedico(self,dicMedico={}):
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            datosUser=(dicMedico['id'], dicMedico['pass'] ,"medico")
+            cursor.execute("INSERT INTO User (idusuario,contrasena,tipousuario) VALUES (?,?,?)",datosUser)
+            conexion.commit()
+        except:
+            print("usuario no encontrado o errores en crearMedico-superUsurio parte1")
+        finally:
+            cursor.close()
+            conexion.close()
+        
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            datos=(dicMedico['id'],dicMedico['nombre'],dicMedico['apellido'],dicMedico['bird'],dicMedico['sexo'],dicMedico['escivil'],dicMedico['job'],dicMedico['tel'],dicMedico['direccion'],dicMedico['tp'],dicMedico['rh'],dicMedico['especialidad'],dicMedico['email'])
+            cursor.execute('INSERT INTO persona (idusuario,nombres,apellidos,fechanacimiento,genero,estadocivil,ocupacion,telefono,direccion,tp,rh,especialidad,email) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', datos )
+            conexion.commit()        
+        except:
+            print("usuario no encontrado o errores en crearMedico-superUsurio parte2")
+        finally:
+            cursor.close()
+            conexion.close()
+        
+    def eliminarCita(self,id):
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            cursor.execute("DELETE FROM Citas WHERE idcitas=%s" %id)
+            conexion.commit()
+        except:
+            print("erro al eliminarCita-superUsurio")
+        finally:
+            cursor.close()
+            conexion.close()
+    
+    def buscarCita(self,id):
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            cursor.execute("""
+                            SELECT t1.idcitas,t1.fechayhora as fecha, t1.puntaje,t1.comentarios,t1.idpacientes, t2.nombres,t2.apellidos,t1.idmedicos,t3.nombres AS nombre_medico,t3.apellidos AS apellido_medico
+                            FROM Citas AS t1
+                            INNER JOIN persona AS t2
+                            ON t1.idpacientes = t2.idusuario
+                            INNER JOIN persona AS t3
+                            ON t1.idmedicos = t3.idusuario
+                            WHERE idcitas=%s
+                            """ %id)
+            cita=cursor.fetchone()
+            if cita is not NONE:
+                print(cita)
+                return cita
+            else:
+                return "vacio"
+        except:
+            print("error al buscarCita - superUsurio")
+            return "vacio"
+        finally:
+            cursor.close()
+            conexion.close()
+    
+    def actualizarCita(self,cita={}):
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            data=(cita["id"],cita["fecha"],cita["puntaje"],cita["comentarios"],cita["idpaciente"],cita["idmedico"],cita["id"])
+            cursor.execute("UPDATE Citas SET idcitas=?,fechayhora=?,puntaje=?,comentarios=?,idpacientes=?,idmedicos=? WHERE idcitas=?", data)
+            conexion.commit()
+        except:
+            print("error al actualizarCita - superUsurio")
+            return "vacio"
         finally:
             cursor.close()
             conexion.close()
