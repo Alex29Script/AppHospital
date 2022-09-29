@@ -124,10 +124,23 @@ class superControlador:
             datos=(infopaciente[0], infopaciente[1], infopaciente[2], infopaciente[3], infopaciente[4], infopaciente[5], infopaciente[6], infopaciente[7],infopaciente[8],infopaciente[9],infopaciente[10],infopaciente[11],infopaciente[12],infopaciente[0])
             cursor.execute('UPDATE persona SET  idusuario=?,nombres=?,apellidos=?,fechanacimiento=?,genero=?,estadocivil=?,ocupacion=?,telefono=?,direccion=?,discapacidad=?,rh=?,eps=?,email=? WHERE idusuario=?', datos )
             conexion.commit()
-            cursor.close()
-            conexion.close()
         except:
             print("usuario no encontrado o errores en actualizarPaciente-superUsurio")
+        finally:
+            cursor.close()
+            conexion.close()
+    
+    def crearnuevopaciente(self,infopaciente=list()):
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            #  0 cc      1          2           3           4           5           6           7               8                   9         10      11        12                      13
+            #['8888', 'Alfonso', 'Lopez', '12/20/2002', 'femenino', 'solter@', 'ingeniero', '3005005050', 'Direccion Cr50', 'discapacitado', 'ab+', 'EPS', 'alfonso@hotmail.com', 'contraseña']
+            datosUser=(infopaciente[0], infopaciente[13] ,"paciente")
+            cursor.execute("INSERT INTO User (idusuario,contrasena,tipousuario) VALUES (?,?,?)",datosUser)
+            conexion.commit()
+        except:
+            print("1")
         finally:
             cursor.close()
             conexion.close()

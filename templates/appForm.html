@@ -49,7 +49,8 @@
                     <form action="" id="frbp1" name="frbp" method="GET"> 
                     <div class="elementoform" >
                         <label for="IDPaciente"> ID Paciente</label> 
-                        <input type="number"  id="IDPaciente"  required="true" name="IDPaciente"/>               
+                        <input type="number"  id="IDPaciente"   required="true" name="IDPaciente"/>               
+                        <input type="submit" value="Crear Paciente" formmethod="POST" formaction="/admin/crear/paciente/"/>
                         <input type="submit" value="editar"/>
                         <input type="submit" value="eliminar"  formmethod="POST" formaction="/admin/eliminar/paciente/"/> 
 
@@ -196,7 +197,7 @@
                             <div class="botones">
                                 <input type="submit" value="Nuevo Paciente"/> 
                                 <input type="submit" value="Actualizar" formmethod="POST" formaction="/admin/actualizar/paciente/"/>
-                                <input type="reset" value="reiniciar formulario">
+                                <input type="submit" value="reiniciar" formaction="/admin" >
                             </div>
                     </form>
                     
@@ -285,7 +286,7 @@
                                     </div>
         
                                     <div class="elementoform">
-                                    <label for="espM">Especilidad:</lable><br/>
+                                    <label for="espM">Especialidad:</lable><br/>
                                         <input type="text" id="espM" name="espM" 
                                         placeholder="Especialidad en Medicina"
                                         required="true"/>
