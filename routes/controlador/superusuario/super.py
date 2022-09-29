@@ -140,7 +140,49 @@ class superControlador:
             cursor.execute("INSERT INTO User (idusuario,contrasena,tipousuario) VALUES (?,?,?)",datosUser)
             conexion.commit()
         except:
-            print("1")
+            print("error añadir paciente 1")
+        finally:
+            cursor.close()
+            conexion.close()
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            #  0 cc      1          2           3           4           5           6           7               8                   9         10      11        12                      13
+            #['8888', 'Alfonso', 'Lopez', '12/20/2002', 'femenino', 'solter@', 'ingeniero', '3005005050', 'Direccion Cr50', 'discapacitado', 'ab+', 'EPS', 'alfonso@hotmail.com', 'contraseña']
+            datosUser=(infopaciente[0], infopaciente[1], infopaciente[2], infopaciente[3], infopaciente[4], infopaciente[5], infopaciente[6], infopaciente[7],infopaciente[8],infopaciente[9],infopaciente[10],infopaciente[11],infopaciente[12])
+            cursor.execute("INSERT INTO persona (idusuario,nombres,apellidos,fechanacimiento,genero,estadocivil,ocupacion,telefono,direccion,discapacidad,rh,eps,email) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",datosUser)
+            conexion.commit()
+        except:
+            print("error añadir paciente 2")
+        finally:
+            cursor.close()
+            conexion.close()
+    
+    def buscarMedico(self,id):
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            cursor.execute('SELECT * FROM persona JOIN user USING (idusuario) WHERE persona.idusuario=%s' %id)
+            busquedaMedico=cursor.fetchone()
+            if busquedaMedico is not None:
+                return busquedaMedico
+            else: return ("vacio")
+        except:
+            print("usuario no encontrado o errores en buscarPaciente-superUsurio")
+        finally:
+            cursor.close()
+            conexion.close()
+    
+    def actualizarMedico(self,infopaciente=list()):
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            #       ['467'0, 'Esebio'1, 'Sanchez'2, '123'3, 'Cirujano'4, '88888888'5, 'ninguno@hotmial.com'6, '28/09/2022'7, 'Masculino'8, 'solter@'9, 'Cr80#23'10, 'sin discapacidad'11, 'Medico'12, 'a+'13]
+            datos=(infopaciente[0], infopaciente[1], infopaciente[2], infopaciente[7], infopaciente[8], infopaciente[9], infopaciente[12], infopaciente[5],infopaciente[10],infopaciente[11],infopaciente[13],infopaciente[4],infopaciente[6],infopaciente[0])
+            cursor.execute('UPDATE persona SET  idusuario=?,nombres=?,apellidos=?,fechanacimiento=?,genero=?,estadocivil=?,ocupacion=?,telefono=?,direccion=?,tp=?,rh=?,especialidad=?,email=? WHERE idusuario=?', datos )
+            conexion.commit()
+        except:
+            print("usuario no encontrado o errores en actualizarPaciente-superUsurio")
         finally:
             cursor.close()
             conexion.close()

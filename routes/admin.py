@@ -61,24 +61,11 @@ def buscarPaciente(id):
 @superU.route("actualizar/paciente/", methods=["POST"])
 def actualizarPaciente():
     pacienteLista=list()
-    pacienteLista.append(request.form["idusuario"])
-    pacienteLista.append(request.form["nombre"])
-    pacienteLista.append(request.form["apellido"])
-    pacienteLista.append(request.form["bird"])
-    pacienteLista.append(request.form["sexo"])
-    pacienteLista.append(request.form["escivil"])
-    pacienteLista.append(request.form["job"])
-    pacienteLista.append(request.form["tel"])
-    pacienteLista.append(request.form["direccion"])
-    pacienteLista.append(request.form["discapacidad"])
-    pacienteLista.append(request.form["rh"])
-    pacienteLista.append(request.form["eps"])
-    pacienteLista.append(request.form["email"])
-    pacienteLista.append(request.form["pass"])
+    pacienteLista=tomarInfoPaciente()
     print(pacienteLista)
     controladorS=superControlador()
     controladorS.actualizarPaciente(pacienteLista)
-    return "actualizar"
+    return redirect("/admin")
 
 @superU.route("/crear/paciente/", methods=["POST"])
 def prepararCrearPaciente():
@@ -88,6 +75,48 @@ def prepararCrearPaciente():
 
 @superU.route("/crear/nuevopaciente/", methods=["POST"])
 def crearNuevoPaciente():
+    pacienteLista=list()
+    pacienteLista=tomarInfoPaciente()
+    print(pacienteLista)
+    controladorS=superControlador()
+    controladorS.crearnuevopaciente(pacienteLista)
+    return redirect("/admin")
+
+##---medico--##
+
+@superU.route("/buscar/medico/<string:id>", methods=["GET"])
+def buscarMedico(id):
+    if session["tipoUsuario"]=="superusuario":
+        controladorS=superControlador()
+        DataMedico=controladorS.buscarMedico(id)
+        print(DataMedico)
+        tPaciente,tMedicos,tcitas2,tHS=dataTable()
+        return render_template("appForm.html", paraFormMedico=DataMedico,Todos_Pacientes=tPaciente, Todos_Medicos=tMedicos,Todos_citas=tcitas2,Todos_hs=tHS)
+    else:
+            print("no seesion")
+            return redirect("/")
+
+@superU.route("/actualizar/medico/", methods=["POST"])
+def actualizarMedico():
+    medicoLista=list()
+    medicoLista=tomarInfoMedico()
+    print(medicoLista)
+    controladorS=superControlador()
+    controladorS.actualizarMedico(medicoLista)
+    return redirect("/admin")
+
+
+
+
+def dataTable():
+    controladorS=superControlador()
+    tPaciente=controladorS.tablaPaciente()
+    tMedicos=controladorS.tablaMedico()
+    tcitas2=controladorS.tablaCitas()
+    tHS=controladorS.tablaHS()
+    return tPaciente,tMedicos,tcitas2,tHS
+
+def tomarInfoPaciente():
     pacienteLista=list()
     pacienteLista.append(request.form["idusuario"])
     pacienteLista.append(request.form["nombre"])
@@ -103,18 +132,22 @@ def crearNuevoPaciente():
     pacienteLista.append(request.form["eps"])
     pacienteLista.append(request.form["email"])
     pacienteLista.append(request.form["pass"])
-    print(pacienteLista)
-    controladorS=superControlador()
-    controladorS.crearnuevopaciente(pacienteLista)
-    return "listo para crear"
+    return pacienteLista
 
-
-def dataTable():
-    controladorS=superControlador()
-    tPaciente=controladorS.tablaPaciente()
-    tMedicos=controladorS.tablaMedico()
-    tcitas2=controladorS.tablaCitas()
-    tHS=controladorS.tablaHS()
-    return tPaciente,tMedicos,tcitas2,tHS
-
-
+def tomarInfoMedico():
+    medico=list()
+    medico.append(request.form["idusuario"])
+    medico.append(request.form["nombre"])
+    medico.append(request.form["apellido"])
+    medico.append(request.form["pass"])
+    medico.append(request.form["espM"])
+    medico.append(request.form["tel"])
+    medico.append(request.form["email"])
+    medico.append(request.form["bird"])
+    medico.append(request.form["sexo"])
+    medico.append(request.form["escivil"])
+    medico.append(request.form["direccion"])
+    medico.append(request.form["tp"])
+    medico.append(request.form["job"])
+    medico.append(request.form["rh"])
+    return medico
