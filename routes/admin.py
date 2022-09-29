@@ -134,21 +134,25 @@ def eliminarCita(id):
     controladorS=superControlador()
     controladorS.eliminarCita(id)
     return redirect("/admin")
-
+#buscar
 @superU.route("/buscarCita/<string:id>", methods=["GET"])
 def buscarCita(id):
     controladorS=superControlador()
     cita=controladorS.buscarCita(id)
     tPaciente,tMedicos,tcitas2,tHS=dataTable()
     return render_template("appForm.html",citaRender=cita,Todos_Pacientes=tPaciente, Todos_Medicos=tMedicos,Todos_citas=tcitas2,Todos_hs=tHS)
-
-@superU.route("/actualizar/citas/", methods=["POST"])
+#actualizar
+@superU.route("/actualizar/cita/", methods=["POST"])
 def actualizarCita():
     infoCita=dicInfoCita()
     controladorS=superControlador()
     controladorS.actualizarCita(infoCita)
     return "actualizada"
-
+#crear
+@superU.route("/crear/cita/formulario/", methods=["GET"])
+def formularioCita():
+    tPaciente,tMedicos,tcitas2,tHS=dataTable()
+    return render_template("crearCitaAdmin.html",Todos_Medicos=tMedicos,Todos_Pacientes=tPaciente)
 
 
 ##--Auxiliares--##

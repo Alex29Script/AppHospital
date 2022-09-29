@@ -229,7 +229,9 @@
                         
                         <div class="contenedorTabla">
                             <table class="tab">
+                                <caption>Medicos</caption>
                                 <thead>
+                                    
                                     <tr>
                                         <th>Documento</th>
                                         <th>Nombre</th>
@@ -379,13 +381,11 @@
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <div class="contenedor">
-                        <form action="#" id="frcita1" name="frbc1" method="get"> 
+                        <form action="/admin/crear/cita/formulario/" id="frcita1" name="frbc1" method="get"> 
                         <div class="elementoform" >
-                            <label for="IDCitas"> ID Citas</label> 
-                            <input type="number"  id="IDCitas"  required="true" name="IDCitas"/>               
-                            <input type="submit" value="editar"/>
-                            <input type="submit" value="crear"/> 
-                            <input type="submit" value="eliminar"/> 
+                            
+                            <input type="submit" value="crear nueva cita"/> 
+                            
     
                         </div>
                         </form>
@@ -471,7 +471,7 @@
                                     </div>
 
                                     <div class="botones">
-                                        <input type="submit" value="Registrar Cambios" formmethod="POST" formaction="/admin/actualizar/citas/"/>    
+                                        <input type="submit" value="Registrar Cambios" formmethod="POST" formaction="/admin/actualizar/cita/"/>    
                                     </div>
 
                                 </div>
