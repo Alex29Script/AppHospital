@@ -1,3 +1,4 @@
+
 from flask import Blueprint, session,render_template,redirect,request
 from routes.controlador.superusuario.super import superControlador
 
@@ -84,6 +85,9 @@ def crearNuevoPaciente():
 
 ##---medico--##
 
+
+
+#Editar Medico
 @superU.route("/buscar/medico/<string:id>", methods=["GET"])
 def buscarMedico(id):
     if session["tipoUsuario"]=="superusuario":
@@ -104,9 +108,28 @@ def actualizarMedico():
     controladorS=superControlador()
     controladorS.actualizarMedico(medicoLista)
     return redirect("/admin")
+#eliminar Medico
+@superU.route("/eliminar/medico/<string:id>", methods=["GET"])
+def eliminarMedico(id):
+    controladorS=superControlador()
+    controladorS.eliminarMedico(id)
+    return redirect("/admin")
+
+@superU.route("/crear/medicofromulario/", methods=["POST"])
+def formularioMedico():
+    idMedico=[request.form["IDMedico"]]
+    return render_template("crearMedicoAdmin.html", Amedico=idMedico)
 
 
 
+
+
+
+
+
+
+
+##--Auxiliares--##
 
 def dataTable():
     controladorS=superControlador()

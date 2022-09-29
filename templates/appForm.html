@@ -73,7 +73,7 @@
                                     <td> {{ paciente.0 }}  </td>
                                     <td> {{ paciente.1 }}  </td>
                                     <td> {{ paciente.2 }}  </td>
-                                    <td> <a href="/admin/buscar/paciente/{{paciente.0}}">editar</a> <a href="/admin/eliminar/paciente/tabla/{{paciente.0}}" method="POST">eliminar</a>  </td>
+                                    <td> <a href="/admin/buscar/paciente/{{paciente.0}}">editar</a> <a href="/admin/eliminar/paciente/tabla/{{paciente.0}}">eliminar</a>  </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -218,11 +218,11 @@
                     <div class="contenedor">
                         <form action="#" id="frbm1" name="frbm1" method="get"> 
                             <div class="elementoform" >
-                                <h4>Buscar Medico</h4>
+                                <h4>crear Medico</h4>
                                 <label for="IDMedico"> ID Medico</label> 
-                                <input type="number" id="IDMedico"  required="true" name="IDPaciente"/>               
+                                <input type="number" id="IDMedico"  required="true" name="IDMedico"/>               
                                 
-                                <input type="submit" value="Registar nuevo Medico"/> 
+                                <input type="submit" value="Registar nuevo Medico" formmethod="POST" formaction="/admin/crear/medicofromulario/" /> 
                                 
                             </div>
                         </form>
@@ -245,7 +245,7 @@
                                         <td> {{ medico.1 }}  </td>
                                         <td> {{ medico.2 }}  </td>
                                         <td> No Establecido </td>
-                                        <td> <a href="/admin/buscar/medico/{{medico.0}}">editar</a> <a href="/admin/eliminar/medico/{{medico.0}}">eliminar</a>  </td>
+                                        <td> <a href="/admin/buscar/medico/{{medico.0}}">editar</a> <a href="/admin/eliminar/medico/{{medico.0}}" method="POST">eliminar</a>  </td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>

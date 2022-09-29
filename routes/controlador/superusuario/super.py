@@ -186,3 +186,15 @@ class superControlador:
         finally:
             cursor.close()
             conexion.close()
+    
+    def eliminarMedico(self,id):
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            cursor.execute("DELETE FROM User WHERE (idusuario=%s AND tipousuario='medico')" %id)
+            conexion.commit()
+        except:
+            print("usuario no encontrado o errores en eliminarMedico-superUsurio")
+        finally:
+            cursor.close()
+            conexion.close()
