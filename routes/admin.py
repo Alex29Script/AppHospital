@@ -1,3 +1,4 @@
+
 from flask import Blueprint, session,render_template,redirect,request
 from routes.controlador.superusuario.super import superControlador
 
@@ -147,7 +148,7 @@ def actualizarCita():
     infoCita=dicInfoCita()
     controladorS=superControlador()
     controladorS.actualizarCita(infoCita)
-    return "actualizada"
+    return redirect("/admin")
 #crear
 @superU.route("/crear/cita/formulario/", methods=["GET"])
 def formularioCita():
@@ -164,16 +165,18 @@ def crearCita():
     controladorS=superControlador()
     controladorS.crearCita(infoCita)
 
-    return "cita creada"
+    return redirect("/admin")
 
 ##---Historia Clinica--##
 
 #crear a formulario
 @superU.route("/crear/hc/formulario/", methods=["POST"])
 def fromularioCita():
-    idcita=request.form["IDCita"]
+    controladorS=superControlador()
+    idcita=(request.form["IDCita"])
     tPaciente,tMedicos,tcitas2,tHS=dataTable()
-    return render_template("crearHCAnmin.html", idcita=idcita,Todos_Medicos=tMedicos,Todos_Pacientes=tPaciente)
+    idcita=controladorS.buscarinfoHC(tcitas2,idcita)
+    return render_template("crearHCAdmin.html", idcita=idcita,Todos_Medicos=tMedicos,Todos_Pacientes=tPaciente)
 
 @superU.route("/crear/hc/", methods=["POST"])
 def crearHC():
@@ -186,17 +189,37 @@ def crearHC():
     }
     controladorS=superControlador()
     controladorS.crearHC(infoHC)
-    return "creada"
+    return redirect("/admin")
 
-@superU.route("/editar/hc/<string:id>", methods=["POST","GET"])
+@superU.route("/editar/hc/<string:id>", methods=["GET"])
 def editarHC(id):
     if request.method=="GET":
         controladorS=superControlador()
         historia=controladorS.buscarHistClinica(id)
+        
         tPaciente,tMedicos,tcitas2,tHS=dataTable()
         return render_template("appForm.html",histRender=historia,Todos_Pacientes=tPaciente, Todos_Medicos=tMedicos,Todos_citas=tcitas2,Todos_hs=tHS)  
-    else:
-        return ("POST"+id)
+
+@superU.route("/editar/hc/", methods=["POST"])
+def actualizarHC():
+    infoHC={
+        "idHC":request.form["IDHistoria"],
+        "idcita":request.form["IDCita"],
+        "idmedico":request.form["IDmed"],
+        "idpaciente":request.form["IDPaciente"],
+        "diagnostico":request.form["ndiag"],
+        "tratamiento":request.form["trata"]
+    }
+    controladorS=superControlador()
+    controladorS.actualizarHC(infoHC)
+    
+    return redirect("/admin")
+
+
+@superU.route("/eliminar/hc/<string:id>", methods=["GET"])
+def elimnarHC(id):
+    controladorS=superControlador()
+    return("eliminado")
 
 
 

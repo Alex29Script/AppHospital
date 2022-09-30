@@ -530,36 +530,36 @@
                         
                         </div>
                     </div>
-
+                    {% if histRender %}
                     <div class="contenedor">
-                        <form id="historiac2" name="historiac2" method="get">
+                        <form id="historiac2" name="historiac2" method="POST" action="/admin/editar/hc/">
                             <div class="elemento">
                                 <div class="infoLog">
                                     <h3>Datos Historia Clinica</h3>
 
                                     <div class="elementoform">
                                         <label for="IDHistoria">ID Historia Clinica: </label>
-                                        <input type="number" readonly="true" id="IDHistoria" name="IDHistoria" required="true" /><br>
+                                        <input type="number" readonly="true" id="IDHistoria" name="IDHistoria" required="true" value="{{histRender.0}}"/><br>
                                     </div>
 
                                     <div class="elementoform">
                                         <label for="IDCita">ID Cita: </label>
-                                        <input type="number" id="IDCita" name="IDCita" readonly required/><br>
+                                        <input type="number" id="IDCita" name="IDCita" readonly required value="{{histRender.3}}"/><br>
                                     </div>
 
                                     <div class="elementoform">
                                         <label for="IDmed">ID Medico: </label>
-                                        <input type="number" id="IDmed" name="IDmed" required/><br>
+                                        <input type="number" id="IDmed" name="IDmed" required value="{{histRender.2}}"/><br>
                                     </div>
 
                                     <div class="elementoform">
                                         <label for="IDPaciente">ID Paciente: </label>
-                                        <input type="number" id="IDPaciente" name="IDPaciente" required/><br>
+                                        <input type="number" id="IDPaciente" name="IDPaciente" required value="{{histRender.1}}"/><br>
                                     </div>
 
                                     <div class="elementoform">
                                         <label for="ndiag">Nombre del Diagnostico: </label>
-                                        <input type="text" id="ndiag" name="ndiag" required/><br>
+                                        <input type="text" id="ndiag" name="ndiag" required value="{{histRender.4}}"/><br>
                                     </div>
 
                                     
@@ -567,7 +567,7 @@
                                     
                                     <div class="elementoform">
                                         <label for="trata"> Tratamiento  </label>
-                                        <textarea id="trata" name="trata" rows="5" cols="30" required>
+                                        <textarea id="trata" name="trata" rows="5" cols="30" required>{{histRender.5}}
                                         </textarea>
                                     </div>
     
@@ -576,7 +576,7 @@
 
                                     
                                     <div class="botones">
-                                        <input type="submit" value="Registrar Cambios"/>
+                                        <input type="submit" value="Registrar Cambios" />
                                         
                                     </div>
 
@@ -584,7 +584,7 @@
                             </div>
                         </form>
                     </div>
- 
+                    {% endif %}
                   </div>
                 </div>
 

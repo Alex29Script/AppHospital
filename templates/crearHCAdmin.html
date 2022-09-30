@@ -72,6 +72,7 @@
 
     </section>
     {% if idcita %}
+    
     <section>
         
         <div class="contenedor">
@@ -88,12 +89,12 @@
 
                         <div class="elementoform">
                             <label for="IDmed">ID Medico: </label>
-                            <input type="number" id="IDmed" name="IDmed" required/><br>
+                            <input type="number" id="IDmed" name="IDmed" required value="{{idcita.2}}"/><br>
                         </div>
 
                         <div class="elementoform">
                             <label for="IDPaciente">ID Paciente: </label>
-                            <input type="number" id="IDPaciente" name="IDPaciente" required/><br>
+                            <input type="number" id="IDPaciente" name="IDPaciente" required value="{{idcita.1}}"/><br>
                         </div>
 
                         <div class="elementoform">
@@ -120,6 +121,7 @@
         </div>
 
     </section>
+    
     {% endif %}
     <footer>
         <div class="pie">

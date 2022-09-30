@@ -1,5 +1,6 @@
 from pickle import NONE
 import sqlite3
+import string
 
 from routes.controlador.conexion.conexion import Conexion
 from routes.controlador.general.moduloAuxiliar import Auxiliar
@@ -282,6 +283,18 @@ class superControlador:
             data=(cita["id"],cita["fecha"],cita["puntaje"],cita["comentarios"],cita["idpaciente"],cita["idmedico"],cita["id"])
             cursor.execute("UPDATE Citas SET idcitas=?,fechayhora=?,puntaje=?,comentarios=?,idpacientes=?,idmedicos=? WHERE idcitas=?", data)
             conexion.commit()
+            #comprobar si la cita tiene una historia asociada
+            data2=(cita["id"])
+            cursor.execute("SELECT idhistoriaclinica FROM Historiaclinica WHERE idcitas=?", data2)
+            
+            citaAsociada=cursor.fetchone()
+            print("###### esta es una cita asociada:",citaAsociada,"campo",citaAsociada[0])
+            if citaAsociada is not None:
+                data3=(cita["idpaciente"],cita["idmedico"],citaAsociada[0])
+                cursor.execute('UPDATE Historiaclinica SET idpacientes=?,idmedicos=? WHERE idhistoriaclinica=?', data3)
+                conexion.commit()
+            else:
+                print("Sin Cambios..................................")
         except:
             print("error al actualizarCita - superUsurio")
             return "vacio"
@@ -302,6 +315,13 @@ class superControlador:
         finally:
             cursor.close()
             conexion.close()
+
+    def buscarinfoHC(self,citas=(),id=string):
+        for cita in citas:
+            if int(cita[0])==int(id):
+                infoHC=(cita[0],cita[2],cita[5])
+                return infoHC
+
 
     def crearHC(self, hc={}):
         try:
@@ -328,6 +348,37 @@ class superControlador:
                 return historiaC
         except:
             print("error al consultar una HistoriaClinica - superUsurio")
+        finally:
+            cursor.close()
+            conexion.close()
+
+    def actualizarHC(self,hc={}):
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            data=(hc["idpaciente"],hc["idmedico"],hc["diagnostico"],hc["tratamiento"],hc["idHC"])
+            cursor.execute('UPDATE Historiaclinica SET idpacientes=?,idmedicos=?,diagnostico=?,tratamiento=? WHERE idhistoriaclinica=?', data)
+            conexion.commit()
+            data2=(hc["idpaciente"],hc["idmedico"],hc["idcita"])
+            cursor.execute('UPDATE Citas SET idpacientes=?,idmedicos=? WHERE idcitas=?', data2)
+            conexion.commit()
+            
+        except:
+            print("error al acutalizar una HistoriaClinica - superUsurio")
+        finally:
+            cursor.close()
+            conexion.close()
+    
+    def eliminarHC(self,id):
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            data=(id)
+            cursor.execute('DELETE FROM Historiaclinica WHERE idhistoriaclinica=?', data)
+            conexion.commit()
+            
+        except:
+            print("error al  eliminar HC - superUsurio")
         finally:
             cursor.close()
             conexion.close()
