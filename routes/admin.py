@@ -219,6 +219,7 @@ def actualizarHC():
 @superU.route("/eliminar/hc/<string:id>", methods=["GET"])
 def elimnarHC(id):
     controladorS=superControlador()
+    controladorS.eliminarHC(id)
     return("eliminado")
 
 

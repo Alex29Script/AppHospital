@@ -331,6 +331,13 @@ class superControlador:
                     #idpacientes,idmedicos,idcitas,diagnostico,tratamiento
             cursor.execute("INSERT INTO Historiaclinica (idpacientes,idmedicos,idcitas,diagnostico,tratamiento) VALUES (?,?,?,?,?)", data)
             conexion.commit()
+            cursor.execute("SELECT idhistoriaclinica From Historiaclinica WHERE idcitas=%s" %hc["idcita"])
+            HCEncontrada=cursor.fetchone()
+            print("acaaaa---------",HCEncontrada)
+            if HCEncontrada is not NONE:
+                data2=(HCEncontrada[0],hc["idcita"])
+                cursor.execute("UPDATE Citas SET idhistoriaclinica=? WHERE idcitas=?", data2)
+                conexion.commit()
         except:
             print("error al crear una HistoriaClinica - superUsurio")
         finally:
