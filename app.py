@@ -4,7 +4,7 @@ from flask import Flask,jsonify, request, render_template,redirect, url_for,sess
 #request recibir la infromacion de los fromularios
 #jsonify manejar los archivos json
 #session para manejar las sessiones
-
+#cambio para probar en el portatil
 
 from routes.controlador.conexion.loginConsulta import loginConsultaDB
 
