@@ -220,7 +220,7 @@ def actualizarHC():
 def elimnarHC(id):
     controladorS=superControlador()
     controladorS.eliminarHC(id)
-    return("eliminado")
+    return redirect("/admin")
 
 
 
