@@ -28,7 +28,7 @@ class superControlador:
         try:
             conexion=sqlite3.connect(Conexion.url)
             cursor=conexion.cursor()
-            cursor.execute('SELECT idusuario,nombres,apellidos FROM persona JOIN user USING (idusuario) WHERE user.tipousuario="medico"')
+            cursor.execute('SELECT idusuario,nombres,apellidos,especialidad FROM persona JOIN user USING (idusuario) WHERE user.tipousuario="medico"')
             todos_medicos=cursor.fetchall()
             if todos_medicos is not None:
                 for medico in todos_medicos:
@@ -46,10 +46,16 @@ class superControlador:
         try:
             conexion=sqlite3.connect(Conexion.url)
             cursor=conexion.cursor()
-            cursor.execute('SELECT idcitas,idhistoriaclinica,idpacientes,idmedicos,fechayhora FROM Citas')
+            cursor.execute("""
+                            SELECT t1.idcitas,t1.fechayhora as fecha,t1.idpacientes, t2.nombres,t2.apellidos,t1.idmedicos,t3.nombres AS nombre_medico,t3.apellidos AS apellido_medico
+                            FROM Citas AS t1
+                            INNER JOIN persona AS t2
+                            ON t1.idpacientes = t2.idusuario
+                            INNER JOIN persona AS t3
+                            ON t1.idmedicos = t3.idusuario
+                            """)
             todas_citas=cursor.fetchall()
             if todas_citas is not None:
-                todas_citas= Auxiliar.obtenerHCnombre(todas_citas,Conexion.url)
                 for cita in todas_citas:
                     print(cita)
                 return todas_citas   
@@ -66,10 +72,16 @@ class superControlador:
         try:
             conexion=sqlite3.connect(Conexion.url)
             cursor=conexion.cursor()
-            cursor.execute('SELECT idhistoriaclinica,idcitas,idpacientes,idmedicos,diagnostico FROM Historiaclinica')
+            cursor.execute(""" 
+                            SELECT t1.idhistoriaclinica, t1.idcitas, t1.idpacientes,t2.nombres,t2.apellidos,t1.idmedicos,t3.nombres,t3.apellidos, t1.diagnostico
+                            FROM Historiaclinica AS t1
+                            INNER JOIN persona AS t2
+                            ON t1.idpacientes=t2.idusuario
+                            INNER JOIN persona AS t3
+                            ON t1.idmedicos=t3.idusuario
+                            """)
             todas_HS=cursor.fetchall()
             if todas_HS is not None:
-                todas_HS=Auxiliar.obtenerHCnombre(todas_HS,Conexion.url)
                 for hs in todas_HS:
                     print(hs)
                 return todas_HS
@@ -77,7 +89,7 @@ class superControlador:
                 return "vacio"
 
         except:
-            return "error en el controlador -funcion tablaCitas-superUsurio"
+            return "error en el controlador -funcion HistoriaClinica-superUsurio"
         finally:
             cursor.close()
             conexion.close()
@@ -273,6 +285,20 @@ class superControlador:
         except:
             print("error al actualizarCita - superUsurio")
             return "vacio"
+        finally:
+            cursor.close()
+            conexion.close()
+    
+    def crearCita(self,cita={}):
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            data=(cita["idmedico"],cita["idpaciente"],cita["fecha"])
+            cursor.execute("INSERT INTO Citas (idmedicos,idpacientes,fechayhora) VALUES (?,?,?)", data)
+            conexion.commit()    
+        except:
+            print("error al crear una cita - superUsurio")
+
         finally:
             cursor.close()
             conexion.close()

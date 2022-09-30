@@ -1,3 +1,4 @@
+
 from flask import Blueprint, session,render_template,redirect,request
 from routes.controlador.superusuario.super import superControlador
 
@@ -153,6 +154,18 @@ def actualizarCita():
 def formularioCita():
     tPaciente,tMedicos,tcitas2,tHS=dataTable()
     return render_template("crearCitaAdmin.html",Todos_Medicos=tMedicos,Todos_Pacientes=tPaciente)
+
+@superU.route("/crear/cita/", methods=["POST"])
+def crearCita():
+    infoCita={
+        "idmedico":request.form["IDmed"],
+        "idpaciente":request.form["IDPaciente"],
+        "fecha":request.form["fecha"]
+    }
+    controladorS=superControlador()
+    controladorS.crearCita(infoCita)
+
+    return "cita creada"
 
 
 ##--Auxiliares--##

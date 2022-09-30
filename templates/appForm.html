@@ -246,7 +246,7 @@
                                         <td> {{ medico.0 }}  </td>
                                         <td> {{ medico.1 }}  </td>
                                         <td> {{ medico.2 }}  </td>
-                                        <td> No Establecido </td>
+                                        <td> {{ medico.3 }} </td>
                                         <td> <a href="/admin/buscar/medico/{{medico.0}}">editar</a> <a href="/admin/eliminar/medico/{{medico.0}}" method="POST">eliminar</a>  </td>
                                         </tr>
                                     {% endfor %}
@@ -405,9 +405,9 @@
                                     {% for cita in Todos_citas %}
                                     <tr>
                                         <td>{{cita.0}} </td>
-                                        <td>CC{{cita.2}} {{cita.5}}</td>
-                                        <td>CC{{cita.3}} {{cita.6}}</td>
-                                        <td>{{cita.4}}</td>
+                                        <td>C.C.{{cita.2}}-{{cita.3}} {{cita.4}}</td>
+                                        <td>C.C.{{cita.5}}-{{cita.6}} {{cita.7}} </td>
+                                        <td><input type="datetime-local" id="fecha" name="fecha" value="{{cita.1}}" readonly/></td>
                                         
                                         <td> <a href="/admin/buscarCita/{{cita.0}}">editar</a> <a href="/admin/eliminar/cita/{{cita.0}}">eliminar</a>  </td>
                                     </tr>
@@ -519,10 +519,10 @@
                                     {% for hs in Todos_hs %}
                                     <tr>
                                         <td>{{hs.0}}</td>
-                                        <td>{{hs.2}}</td>
-                                        <td>C.C.{{hs.2}} {{hs.5}}</td>
-                                        <td>C.C.{{hs.3}} {{hs.6}}</td>
-                                        <td>{{hs.4}}</td>
+                                        <td>{{hs.1}}</td>
+                                        <td>C.C.{{hs.2}} {{hs.3}}{{hs.4}}</td>
+                                        <td>C.C.{{hs.5}} {{hs.6}} {{hs.7}}</td>
+                                        <td>{{hs.8}}</td>
                                         <td> <a href="admin/editar/histc/{{hs.0}}">editar</a> <a href="admin/editar/histc/{{hs.0}}">eliminar</a>  </td>
                                     </tr>
                                     {%endfor%}
