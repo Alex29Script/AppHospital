@@ -302,3 +302,32 @@ class superControlador:
         finally:
             cursor.close()
             conexion.close()
+
+    def crearHC(self, hc={}):
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            data=(hc["idpaciente"],hc["idmedico"],hc["idcita"],hc["diagnostico"],hc["tratamiento"])
+                    #idpacientes,idmedicos,idcitas,diagnostico,tratamiento
+            cursor.execute("INSERT INTO Historiaclinica (idpacientes,idmedicos,idcitas,diagnostico,tratamiento) VALUES (?,?,?,?,?)", data)
+            conexion.commit()
+        except:
+            print("error al crear una HistoriaClinica - superUsurio")
+        finally:
+            cursor.close()
+            conexion.close()
+    
+    def buscarHistClinica(self,id):
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            cursor.execute('SELECT * FROM Historiaclinica WHERE idhistoriaclinica=%s' %id)
+            historiaC=cursor.fetchone()
+            if historiaC is not NONE:
+                print("esta es la HC:",historiaC)
+                return historiaC
+        except:
+            print("error al consultar una HistoriaClinica - superUsurio")
+        finally:
+            cursor.close()
+            conexion.close()

@@ -492,13 +492,12 @@
                   <div class="accordion-body">
 
                     <div class="contenedor">
-                        <form action="#" id="historiaC" name="historiaC" method="get"> 
+                        <form action="/admin/crear/hc/formulario/" id="historiaC" name="historiaC" method="POST"> 
                         <div class="elementoform" >
-                            <label for="IDHistoria"> ID Historia Clinica</label> 
-                            <input type="number"  id="IDHistoria"  required="true" name="IDHistoria"/>               
-                            <input type="submit" value="editar"/>
-                            <input type="submit" value="crear"/> 
-                            <input type="submit" value="eliminar"/> 
+                            <label for="IDHistoria"> ID Cita</label> 
+                            <input type="number"  id="IDHistoria"  required="true" placeholder="ingresa el idcita con la cual se va ateneder el paciente" name="IDCita" />               
+                            <input type="submit" value="crear historia clínica"/> 
+                            
     
                         </div>
                         </form>
@@ -523,7 +522,7 @@
                                         <td>C.C.{{hs.2}} {{hs.3}}{{hs.4}}</td>
                                         <td>C.C.{{hs.5}} {{hs.6}} {{hs.7}}</td>
                                         <td>{{hs.8}}</td>
-                                        <td> <a href="admin/editar/histc/{{hs.0}}">editar</a> <a href="admin/editar/histc/{{hs.0}}">eliminar</a>  </td>
+                                        <td> <a href="/admin/editar/hc/{{hs.0}}">editar</a> <a href="/admin/eliminar/hc/{{hs.0}}">eliminar</a>  </td>
                                     </tr>
                                     {%endfor%}
                                 </tbody>
@@ -545,39 +544,30 @@
 
                                     <div class="elementoform">
                                         <label for="IDCita">ID Cita: </label>
-                                        <input type="number" id="IDCita" name="IDCita"/><br>
+                                        <input type="number" id="IDCita" name="IDCita" readonly required/><br>
                                     </div>
 
                                     <div class="elementoform">
                                         <label for="IDmed">ID Medico: </label>
-                                        <input type="number" id="IDmed" name="IDmed"/><br>
+                                        <input type="number" id="IDmed" name="IDmed" required/><br>
                                     </div>
 
                                     <div class="elementoform">
                                         <label for="IDPaciente">ID Paciente: </label>
-                                        <input type="number" id="IDPaciente" name="IDPaciente"/><br>
+                                        <input type="number" id="IDPaciente" name="IDPaciente" required/><br>
                                     </div>
 
                                     <div class="elementoform">
                                         <label for="ndiag">Nombre del Diagnostico: </label>
-                                        <input type="text" id="ndiag" name="ndiag" /><br>
+                                        <input type="text" id="ndiag" name="ndiag" required/><br>
                                     </div>
 
-                                    <div class="elementoform">
-                                        <label for="nEnfer"> Enfermedad  </label>
-                                        <input type="text" id="nEnfer" name="nEnfer" /><br>
-                                    </div>
+                                    
 
-
-                                    <div class="elementoform">
-                                    <label for="des"> Descripción  </label>
-                                    <textarea id="des" name="des" rows="5" cols="30">
-                                    </textarea>
-                                    </div>
-
+                                    
                                     <div class="elementoform">
                                         <label for="trata"> Tratamiento  </label>
-                                        <textarea id="trata" name="trata" rows="5" cols="30">
+                                        <textarea id="trata" name="trata" rows="5" cols="30" required>
                                         </textarea>
                                     </div>
     
@@ -586,8 +576,8 @@
 
                                     
                                     <div class="botones">
-                                        <input type="submit" value="Registrar"/>
-                                        <input type="reset" value="reiniciar formulario">
+                                        <input type="submit" value="Registrar Cambios"/>
+                                        
                                     </div>
 
                                 </div>

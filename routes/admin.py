@@ -1,4 +1,3 @@
-
 from flask import Blueprint, session,render_template,redirect,request
 from routes.controlador.superusuario.super import superControlador
 
@@ -166,6 +165,51 @@ def crearCita():
     controladorS.crearCita(infoCita)
 
     return "cita creada"
+
+##---Historia Clinica--##
+
+#crear a formulario
+@superU.route("/crear/hc/formulario/", methods=["POST"])
+def fromularioCita():
+    idcita=request.form["IDCita"]
+    tPaciente,tMedicos,tcitas2,tHS=dataTable()
+    return render_template("crearHCAnmin.html", idcita=idcita,Todos_Medicos=tMedicos,Todos_Pacientes=tPaciente)
+
+@superU.route("/crear/hc/", methods=["POST"])
+def crearHC():
+    infoHC={
+        "idcita":request.form["IDCita"],
+        "idmedico":request.form["IDmed"],
+        "idpaciente":request.form["IDPaciente"],
+        "diagnostico":request.form["ndiag"],
+        "tratamiento":request.form["trata"]
+    }
+    controladorS=superControlador()
+    controladorS.crearHC(infoHC)
+    return "creada"
+
+@superU.route("/editar/hc/<string:id>", methods=["POST","GET"])
+def editarHC(id):
+    if request.method=="GET":
+        controladorS=superControlador()
+        historia=controladorS.buscarHistClinica(id)
+        tPaciente,tMedicos,tcitas2,tHS=dataTable()
+        return render_template("appForm.html",histRender=historia,Todos_Pacientes=tPaciente, Todos_Medicos=tMedicos,Todos_citas=tcitas2,Todos_hs=tHS)  
+    else:
+        return ("POST"+id)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ##--Auxiliares--##
