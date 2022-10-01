@@ -13,7 +13,6 @@ def mostrarAdmin():
             tMedicos=controladorS.tablaMedico()
             tcitas2=controladorS.tablaCitas()
             tHS=controladorS.tablaHS()
-
             return render_template("appForm.html", Todos_Pacientes=tPaciente, Todos_Medicos=tMedicos,Todos_citas=tcitas2,Todos_hs=tHS)
         else:
             print("no seesion")
