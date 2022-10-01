@@ -1,3 +1,4 @@
+
 from flask import Flask,jsonify, request, render_template,redirect, url_for,session
 #render_template para mostrar las paginas
 #redirect los routers
@@ -5,9 +6,9 @@ from flask import Flask,jsonify, request, render_template,redirect, url_for,sess
 #jsonify manejar los archivos json
 #session para manejar las sessiones
 
-
+from routes.controlador.superusuario.super import superControlador
 from routes.controlador.conexion.loginConsulta import loginConsultaDB
-
+from routes.admin import tomarInfoPaciente
 
 
 from routes.admin import superU
@@ -58,12 +59,15 @@ def loguear():
             return "no logueado"
 
     
-@app.route("/formregistrarce")
+@app.route("/formregistrarce", methods=["POST","GET"])
 def registroform():
-    return render_template("registro.html")
-
-
-
+    if request.method=="GET":
+        return render_template("registro.html")
+    elif request.method=="POST":
+        nuevo_paciente=tomarInfoPaciente()
+        controladorS=superControlador()
+        controladorS.crearnuevopaciente(nuevo_paciente)
+        return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

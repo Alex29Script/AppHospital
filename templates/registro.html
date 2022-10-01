@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    <link href="./css/estilosreg.css" rel="stylesheet"/>
+    <link href="{{url_for('static',filename='css/estilosreg.css') }}" rel="stylesheet"/>
 </head>
 <body>
     <div class="contenedor">
         <h2>Formulario de Registro</h2>
-        <form id="Paciente1" name="formreg" method="get">
+        <form id="Paciente1" name="formreg" method="POST" action="/formregistrarce">
             <div class="elemento">
                 <div class="infoLog">
                     <h3>Datos para login</h3>
@@ -81,12 +81,12 @@
                 </div>               
                     <br>
                     <div class="botones">
-                        <input type="submit" value="Loguearse"/>
+                        <input type="submit" value="registrarce"/>
                         <input type="reset" value="reiniciar formulario">
                     </div>
         </form>
         <div class="boton">
-            <button  type="submit" name="button"   onclick="window.location.href='./index.html';">Volver a la Página de Inicio</button>
+            <button  type="submit" name="button"   onclick="window.location.href='./';">Volver a la Página de Inicio</button>
 
         </div>
      </div>
