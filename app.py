@@ -62,6 +62,8 @@ def loguear():
 def registroform():
     return render_template("registro.html")
 
+    
+
 
 
 
