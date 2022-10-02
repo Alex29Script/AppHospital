@@ -31,7 +31,7 @@ nav{
     float: left;
     position: sticky;
     margin: 0px;/*margen parte superior del menu*/
-    background-color: #38a6f5;
+    background-color: #e8f0f6;
     padding: 10px 10px 20% 10px;
     border-radius: 10px;
     transition: all 0.5s ease;
@@ -132,7 +132,7 @@ footer{
     clear:both;
     padding: 20px;
     text-align: center;
-    background-color: #2b2ec2;
+    background-color: #f4f4f6;
     color: #ffffff;
     border-radius: 10px;
 }
@@ -150,4 +150,20 @@ footer .pie img{
 }
 footer .pie a{
     color: #ffffff;   
+}
+.volver{
+    background-color: #023e8a;
+    color: #fff;
+    border: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+    float: left;
+    width: 10%;
+    text-align: center;
+    margin: 5px;
+    text-decoration: none;
 }

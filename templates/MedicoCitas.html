@@ -13,47 +13,91 @@
             
         </div>
     </footer>
+      
+    <nav>
+        <a href="MedicoCitas.html">Citas</a>
+        <div class="cerrar">
+         <a href="#">Cerrar sesión </a>
+         </div>
+     </nav>
     <body>
-                
-        <nav>
-           <a href="MedicoCitas.html">Citas</a>
-            <a href="MedicoHistoriaClinica.html">Historia Clinica</a>
-            <div class="cerrar">
-            <a href="#">Cerrar sesión </a>
-            </div>
-        </nav><br>
+        <br>
         <section>
-            <br/>
-            <br/>
-            <br/>
-            <h1>Citas programadas para usted</h1>
-        <table class="tab">
-                        
-            <tr>
-                <th>idCita</th>
-                <th>Fecha y Hora</th>
-                <th>Documento</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Accion</th>
             
-            </tr>
-            {% if citas_medico %}
-            {% for cita in citas_medico %}
-            <tr>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h1>Citas programadas para usted</h1>
+                <table class="tab">
+                                
+                    <tr>
+                        <th>idCita</th>
+                        <th>Fecha y Hora</th>
+                        <th>Documento</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Accion</th>
+                    
+                    </tr>
+                    {% if citas_medico %}
+                    {% for cita in citas_medico %}
+                    {% if cita.5 == None %}
+                    <tr>
+                        
+                            <td>{{cita.0}}</td>
+                            <td><input type="datetime-local" id="fecha" name="trip-start" value="{{cita.1}}" readonly></td>
+                            <td>{{cita.2}}</td>
+                            <td>{{cita.3}}</td>
+                            <td>{{cita.4}}</td>
+                            <td><a href="/medico/atender/{{cita.0}}_{{cita.2}}_{{cita.3}} {{cita.4}}">atender</a></td>
+                                    
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %} 
+                </table>
+            
+        </section>
+        <section>
                 
-                    <td>{{cita.0}}</td>
-                    <td><input type="datetime-local" id="fecha" name="trip-start" value="{{cita.1}}" readonly></td>
-                    <td>{{cita.2}}</td>
-                    <td>{{cita.3}}</td>
-                    <td>{{cita.4}}</td>
-                    <td><a href="/medico/atender/{{cita.0}}_{{cita.2}}_{{cita.3}} {{cita.4}}">atender</a></td>
-                             
-            </tr>
-            {% endfor %}
-            {% endif %} 
-        </table>
-    </section>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <table class="tab">
+                    <h1>Citas atendidas por usted </h1>            
+                    <tr>
+                        <th>idCita</th>
+                        <th>id HistoClinica</th>
+                        <th>Fecha y Hora</th>
+                        <th>Documento</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Accion</th>
+                    
+                    </tr>
+                    {% if citas_medico %}
+                    {% for cita in citas_medico %}
+                    {% if cita.5 != None %}
+                    <tr>
+                        
+                            <td>{{cita.0}}</td>
+                            <td>{{cita.5}}</td>
+                            <td><input type="datetime-local" id="fecha" name="trip-start" value="{{cita.1}}" readonly></td>
+                            <td>{{cita.2}}</td>
+                            <td>{{cita.3}}</td>
+                            <td>{{cita.4}}</td>
+                            <td><a href="/medico/editar/HC/{{cita.5}}">editar</a></td>
+                                    
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %} 
+                </table>
+            
+        </section>
     </body>
     <footer>
         <div class="pie">

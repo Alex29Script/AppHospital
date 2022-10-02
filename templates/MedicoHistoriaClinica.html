@@ -5,42 +5,40 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Medico</title>
-        <link href="./css/MedicoHistoriaClinica.css" rel="stylesheet">
+        <link href="{{url_for('static',filename='css/MedicoHistoriaClinica1.css')}}" rel="stylesheet">
 
     </head>
     <footer>
-        <div class="imgT"><img src="./img/log.png">Hospital General de Barranquilla</img>
+        <div class="imgT"><img src="./img/log.png">Hospital General de BarranquillaA</img>
             
         </div>
     </footer>
-    <nav>
-        <a href="MedicoCitas.html">Citas</a>
-        <a href="MedicoHistoriaClinica.html">Historia Clinica</a>
-        <div class="cerrar">
-        <a href="#">Cerrar sesión </a>
-        </div>
-    </nav><br>
     <body>
+    <section>
+    <div class="contenedor">
+        <a id="volver" class="volver" href="/medico/">volver</a>
+    </div>
+    {% if historiaC %}
     <div class="contenedor">
         <form id="citas1" name="citas1" method="get">
             <div class="elemento">
                 <div class="infoLog">
-                    <h3>Datos para Citas</h3>
+                    <h3>Datos para Citas {{historiaC.0}}</h3>
 
                     <div class="elementoform">
                         <label for="nmed">ID Medico: </label>
-                        <input type="text" id="nmed" name="nmed" readonly="true"/><br>
+                        <input type="text" id="nmed" name="nmed" readonly="true" value="{{historiaC.6}}"/><br>
                     </div>
 
 
                     <div class="elementoform">
                         <label for="npaciente">ID Paciente: </label>
-                        <input type="text" id="npaciente" name="npaciente" readonly="true"/><br>
+                        <input type="text" id="npaciente" name="npaciente" readonly="true" value="{{historiaC.3}}"/><br>
                     </div>
 
                     <div class="elementoform">
                         <label for="fecha">Fecha</label>
-                        <input type="datetime-local" id="fecha" name="fecha"/><br>
+                        <input type="datetime-local" id="fecha" name="fecha" readonly value="{{historiaC.2}}"/><br>
                     </div>
 
                 </div>
@@ -48,69 +46,66 @@
         </form>
     </div>
         <div class="contenedor">
-            <form id="historiac2" name="historiac2" method="get">
+            <form id="historiac2" name="historiac2" method="POST" action="/medico/editar/HC/">
                 <div class="elemento">
                     <div class="infoLog">
                         <h3>Datos Historia Clinica</h3>
 
                         <div class="elementoform">
                             <label for="IDHistoria">ID Historia Clinica: </label>
-                            <input type="number" readonly="true" id="IDHistoria" name="IDHistoria" required="true" /><br>
+                            <input type="number" value="{{historiaC.0}}" readonly="true" id="IDHistoria" name="IDHistoria" required="true" /><br>
                         </div>
 
                         <div class="elementoform">
                             <label for="IDCita">ID Cita: </label>
-                            <input type="number" id="IDCita" name="IDCita"/><br>
+                            <input type="number" id="IDCita" name="IDCita" value="{{historiaC.1}}" readonly/><br>
                         </div>
 
                         <div class="elementoform">
                             <label for="IDmed">Nombre Del Medico: </label>
-                            <input type="number" id="IDmed" name="IDmed"/><br>
+                            <input type="text" id="IDmed" name="nMedico" readonly value="{{historiaC.7}} {{historiaC.8}}"/><br>
                         </div>
 
                         <div class="elementoform">
                             <label for="IDPaciente">Nombre del Paciente: </label>
-                            <input type="number" id="IDPaciente" name="IDPaciente"/><br>
+                            <input type="text" id="IDPaciente" name="nPaciente" readonly value="{{historiaC.4}} {{historiaC.5}}"/><br>
+                        </div>
+
+                        
+                        <div class="elementoform">
+                            <label for="puntaje"> Puntaje </label>
+                            <input type="number" id="puntaje" name="puntaje" value="{{historiaC.1}}" readonly/><br>
+                        </div>
+
+                        
+                        <div class="elementoform">
+                            <label for="trata">Comentarios</label>
+                            <textarea id="trata" name="comentarios" rows="5" cols="30" readonly>{{historiaC.10}}</textarea>
                         </div>
 
                         <div class="elementoform">
                             <label for="ndiag">Nombre del Diagnostico: </label>
-                            <input type="text" id="ndiag" name="ndiag" /><br>
+                            <input type="text" id="ndiag" name="ndiag" value="{{historiaC.11}}"/><br>
                         </div>
 
-                        <div class="elementoform">
-                            <label for="nEnfer"> Enfermedad  </label>
-                            <input type="text" id="nEnfer" name="nEnfer" /><br>
-                        </div>
-
-
-                        <div class="elementoform">
-                        <label for="des"> Descripción  </label>
-                        <textarea id="des" name="des" rows="5" cols="30">
-                        </textarea>
-                        </div>
 
                         <div class="elementoform">
                             <label for="trata"> Tratamiento  </label>
-                            <textarea id="trata" name="trata" rows="5" cols="30">
-                            </textarea>
+                            <textarea id="trata" name="trata" rows="5" cols="30" >{{historiaC.12}}</textarea>
                         </div>
 
-
-
-
-                        
                         <div class="botones">
-                            <input type="submit" value="Registrar"/>
-                            <input type="reset" value="reiniciar formulario">
+                            <input type="submit" value="Registrar Cambios"/>
+                            
                         </div>
 
                     </div>
                 </div>
             </form>
+
         </div>
-
-
+        {% endif %}
+    </section>
     </body>
     <footer>
         <div class="pie">

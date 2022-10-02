@@ -94,7 +94,7 @@ footer{
     clear:both;
     padding: 20px;
     text-align: center;
-    background-color: #2b2ec2;
+    background-color: #1111b1;
     color: #ffffff;
     border-radius: 10px;
 }
@@ -112,4 +112,22 @@ footer .pie img{
 }
 footer .pie a{
     color: #ffffff;   
+}
+.contenedor{
+    background-color: rgb(255, 255, 255);
+    margin: 10px auto;
+    /*     centrar formulario  */
+    width: 50%;
+    height: 40px;
+    max-height: 50%;
+    padding: 10px;
+    /*     fondo con trasparencia    */
+    
+    /*     redondeo de esquinas    */
+    border-radius: 10px;
+    float: left;
+    border-radius: 5px;
+    box-shadow: 1px 0 4px rgb(0,0,0,0.2);
+    border: solid 2px black;
+
 }

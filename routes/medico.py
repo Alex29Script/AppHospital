@@ -1,5 +1,5 @@
-
 from flask import Blueprint, request,session, render_template,redirect
+import requests
 
 from routes.controlador.medico.controladorMedico import superMedico
 
@@ -33,4 +33,25 @@ def crearHG():
         "diagnostico":request.form["ndiag"],
         "tratamiento":request.form["trata"]
     }
+    controladorM=superMedico()
+    controladorM.crearHC(infoHC)
     return infoHC
+
+@medico.route("/editar/HC/<id>", methods=["GET"])
+def editarHistoriaClinica(id):
+    controladorM=superMedico()
+    infoHistoriaClinic=controladorM.buscarHistoriaCLinica(id)
+    print(infoHistoriaClinic)
+    return render_template("MedicoHistoriaClinica.html",historiaC=infoHistoriaClinic)
+
+@medico.route("/editar/HC/", methods=["POST"])
+def actualizarDiagnostico():
+    infoHistoria={
+        "idhistoriacita":request.form["IDHistoria"],
+        "diagnostico": request.form["ndiag"],
+        "tratamiento": request.form["trata"]
+    }
+    print("info generada del medico",infoHistoria)
+    controladorM=superMedico()
+    controladorM.actualizarHC(infoHistoria)
+    return "actualizado"
