@@ -8,4 +8,5 @@ paciente=Blueprint("paciente",__name__)
 
 @paciente.route("/")
 def inicioPaciente():
+    
     return "soy paciente"

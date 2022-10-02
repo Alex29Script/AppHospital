@@ -14,11 +14,7 @@
         </div>
     </footer>
     <body>
-        {% if usurioLogin %}
-        <h1>{{usurioLogin}}</h>
-        {% endif %}
-        
-        
+                
         <nav>
            <a href="MedicoCitas.html">Citas</a>
             <a href="MedicoHistoriaClinica.html">Historia Clinica</a>
@@ -26,74 +22,38 @@
             <a href="#">Cerrar sesión </a>
             </div>
         </nav><br>
+        <section>
+            <br/>
+            <br/>
+            <br/>
+            <h1>Citas programadas para usted</h1>
         <table class="tab">
-            <h1>Citas</h1>            
+                        
             <tr>
+                <th>idCita</th>
+                <th>Fecha y Hora</th>
                 <th>Documento</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
-                <th>Fecha y Hora</th>
-                <th>Asiste</th>
+                <th>Accion</th>
             
             </tr>
-
+            {% if citas_medico %}
+            {% for cita in citas_medico %}
             <tr>
-                <td>1234</td>
-                <td>Luz Amanda</td>
-                <td>Gaviria</td>
-                <td><input type="datetime-local" id="start" name="trip-start"
-                    value="2018-07-22"
-                    min="2018-01-01" max="2018-12-31"></td>
-                    <td><button type="submit" onclick="window.location.href='./MedicoHistoriaClinica.html';">Si</button> 
-                    <button>No</button></td>             
+                
+                    <td>{{cita.0}}</td>
+                    <td><input type="datetime-local" id="fecha" name="trip-start" value="{{cita.1}}" readonly></td>
+                    <td>{{cita.2}}</td>
+                    <td>{{cita.3}}</td>
+                    <td>{{cita.4}}</td>
+                    <td><a href="/medico/atender/{{cita.0}}_{{cita.2}}_{{cita.3}} {{cita.4}}">atender</a></td>
+                             
             </tr>
-            <tr>
-                <td>9020</td>
-                <td>Nellys</td>
-                <td>Calderin</td>
-                <td><input type="datetime-local" id="start" name="trip-start"
-                    value="2018-07-22"
-                    min="2018-01-01" max="2018-12-31"></td>
-                    <td><button type="submit" onclick="window.location.href='./MedicoHistoriaClinica.html';">Si</button> 
-                    <button>No</button></td>  
-
-            </tr>
-            <tr>
-                <td>3452</td>
-                <td>Alexis</td>
-                <td>Ariza</td>
-                <td><input type="datetime-local" id="start" name="trip-start"
-                    value="2018-07-22"
-                    min="2018-01-01" max="2018-12-31"></td>
-                    <td><button type="submit" onclick="window.location.href='./MedicoHistoriaClinica.html';">Si</button> 
-                    <button>No</button></td> 
-
-            </tr>
-            <tr>
-                <td>9076</td>
-                <td>Ximena</td>
-                <td>Quiceno</td>
-                <td><input type="datetime-local" id="start" name="trip-start"
-                    value="2018-07-22"
-                    min="2018-01-01" max="2018-12-31"></td>
-                    <td><button type="submit" onclick="window.location.href='./MedicoHistoriaClinica.html';">Si</button> 
-                    <button>No</button></td> 
-
-            </tr>
-            <tr>
-                <td>3076</td>
-                <td>Gabriel</td>
-                <td>Rodriguez</td>
-                <td><input type="datetime-local" id="start" name="trip-start"
-                    value="2018-07-22"
-                    min="2018-01-01" max="2018-12-31"></td>
-                    <td><button type="submit" onclick="window.location.href='./MedicoHistoriaClinica.html';">Si</button> 
-                    <button>No</button></td> 
-
-            </tr>
-             
+            {% endfor %}
+            {% endif %} 
         </table>
-        
+    </section>
     </body>
     <footer>
         <div class="pie">
