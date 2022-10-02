@@ -35,7 +35,7 @@ def crearHG():
     }
     controladorM=superMedico()
     controladorM.crearHC(infoHC)
-    return infoHC
+    return redirect("/medico/")
 
 @medico.route("/editar/HC/<id>", methods=["GET"])
 def editarHistoriaClinica(id):
@@ -54,4 +54,4 @@ def actualizarDiagnostico():
     print("info generada del medico",infoHistoria)
     controladorM=superMedico()
     controladorM.actualizarHC(infoHistoria)
-    return "actualizado"
+    return redirect("/medico/")
