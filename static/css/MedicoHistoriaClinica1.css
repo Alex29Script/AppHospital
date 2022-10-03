@@ -163,3 +163,13 @@ footer .pie a{
     margin: 5px;
     text-decoration: none;
 }
+textarea{
+    width: 100%;
+    border: none;
+    width: 100%;
+    color: rgb(14, 17, 17);
+    background: transparent;
+    border: none;
+    border-bottom: #caf0f8 solid 1px;
+    max-width: 100%;
+}
