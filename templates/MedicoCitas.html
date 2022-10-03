@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Medico</title>
-        <link href="../static/css/MedicoCitas.css" rel="stylesheet">
+        <link href="{{url_for('static',filename='css/MedicoCitas.css') }}" rel="stylesheet">
 
     </head>
     <footer>
@@ -23,11 +23,7 @@
     <body>
         <br>
         <section>
-            
-                    <br/>
-                    <br/>
-                    <br/>
-                    <h1>Citas programadas para usted</h1>
+                <h1>Citas programadas para usted</h1>
                 <table class="tab">
                                 
                     <tr>
@@ -59,15 +55,8 @@
             
         </section>
         <section>
-                
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
+                <h1>Citas atendidas por usted </h1>  
                 <table class="tab">
-                    <h1>Citas atendidas por usted </h1>            
                     <tr>
                         <th>idCita</th>
                         <th>id HistoClinica</th>

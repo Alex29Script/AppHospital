@@ -1,5 +1,5 @@
 from flask import Blueprint, request,session, render_template,redirect
-import requests
+
 
 from routes.controlador.medico.controladorMedico import superMedico
 

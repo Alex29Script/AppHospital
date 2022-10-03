@@ -16,7 +16,6 @@ body{
     color: aliceblue;
     font-size: 150%;
     text-align: center;
-   
 }
 img {
     display: block;
@@ -24,7 +23,7 @@ img {
     max-width:10%;
     width: 35%;
 
-  }
+}
 nav{
     
     width: 20%;
@@ -84,23 +83,19 @@ nav a:hover{
     border: none;
     border-bottom: #caf0f8 solid 1px;
     text-align: center;
-     
 }
 .contenedor{
 
     margin: 10px auto;
-    /*     centrar formulario  */
     width: 60%;
     height: 100%;
     padding: 10px;
-    /*     fondo con trasparencia    */
-    
-    /*     redondeo de esquinas    */
     border-radius: 10px;
     float: left;
     border-radius: 5px;
     box-shadow: 1px 0 4px rgb(0,0,0,0.2);
     margin-left: 10px;
+    background-color: white;
 
 }
 input[type="submit"]{
@@ -114,6 +109,7 @@ input[type="submit"]{
     padding: 15px;
     margin-top: 10px;
     border-radius: 10px;
+
 }input[type="reset"]{
     background-color: #023e8a;
     color: #fff;
@@ -132,7 +128,7 @@ footer{
     clear:both;
     padding: 20px;
     text-align: center;
-    background-color: #f4f4f6;
+    background-color:  #1111b1;
     color: #ffffff;
     border-radius: 10px;
 }

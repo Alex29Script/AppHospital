@@ -65,6 +65,9 @@ nav a:hover{
 }
 table {
     border-collapse: collapse;
+    overflow-x: auto;
+   
+   
 }
  
 table,
@@ -86,6 +89,10 @@ td {
     box-shadow: 1px 0 4px rgb(0,0,0,0.2);
     margin: 10px; 
     padding: 30px;
+    text-align: center;
+    width: 60%;
+    overflow-x: auto;
+    overflow: auto;
 }
 footer{
     float: left;
@@ -116,18 +123,29 @@ footer .pie a{
 .contenedor{
     background-color: rgb(255, 255, 255);
     margin: 10px auto;
-    /*     centrar formulario  */
     width: 50%;
     height: 40px;
     max-height: 50%;
     padding: 10px;
-    /*     fondo con trasparencia    */
-    
-    /*     redondeo de esquinas    */
     border-radius: 10px;
     float: left;
     border-radius: 5px;
     box-shadow: 1px 0 4px rgb(0,0,0,0.2);
     border: solid 2px black;
 
+}
+section{
+    position: relative;
+    float: left;
+    color: #023e8a;
+    border-radius: 5px;
+    box-shadow: 1px 0 4px rgb(0,0,0,0.2);
+    margin:10px; 
+    padding: 15px;
+    height: 450px;
+    width: 60%;
+    height: 40%;
+    max-width: 60%;
+    max-height: 50%;
+    
 }
