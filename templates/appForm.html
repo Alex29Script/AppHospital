@@ -26,7 +26,7 @@
         <a data-bs-toggle="collapse" href="#collapseThree">Citas</a>
         <a data-bs-toggle="collapse" href="#collapseFour">Historia Clinica</a>
         <div class="cerrar">
-        <a href="#">Cerrar sesión </a>
+        <a href="/cerrar/">Cerrar sesión </a>
         </div>
 
     </nav>
@@ -96,7 +96,7 @@
                                 <h3>Datos para login</h3>
                                 <div class="elementoform">
                                 <label for="IDUsuario">Cedula: </label>
-                                <input type="number" id="IDUsuario" name="idusuario" required="true" placeholder="su numero de cedula" value="{{ paraFormPaciente.0 }}"/><br>
+                                <input type="number" min="1" id="IDUsuario" name="idusuario" required="true" placeholder="su numero de cedula" value="{{ paraFormPaciente.0 }}"/><br>
                                 </div>
 
                                 <div class="elementoform">
@@ -266,7 +266,7 @@
                                     <h3>Datos para login</h3>
                                     <div class="elementoform">
                                     <label for="IDUsuario">Cedula: </label>
-                                    <input type="number" id="IDUsuario" name="idusuario" required="true" placeholder="su numero de cedula" value="{{paraFormMedico.0}}"/><br>
+                                    <input type="number" min="1" id="IDUsuario" name="idusuario" required="true" placeholder="su numero de cedula" value="{{paraFormMedico.0}}"/><br>
                                     </div>
         
                                     <div class="elementoform">
