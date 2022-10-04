@@ -15,8 +15,7 @@
     </footer>
     <nav>            
         <a href="/paciente/">Citas</a>
-        <a href="ConsultarCita.html">Consultar Citas</a>
-        <a href="PacienteHistoriaClinica.html">Historia Clinica</a>
+        <a href="/paciente/vercitas/">Historia Clinica</a>
         <div class="cerrar">
         <a href="#">Cerrar sesión </a>
         </div>
@@ -49,7 +48,7 @@
                     <td>{{cita.4}} {{cita.5}}-{{cita.6}}</td>
                     <td>{{cita.7}}</td>
                     <td>{{cita.8}}</td>
-                    <td><a href="/paciente/calificar/cita/{{cita.0}}">Ver o Calificar</a></td>            
+                    <td><a href="/paciente/calificar/cita/{{cita.1}}">Ver o Calificar</a></td>            
                     
                 </tr>
                 {% endfor %}
@@ -59,13 +58,13 @@
         </section>
 
 
-        
+        {% if historiaC %}
         <section>
                 <div class="contenedor">
-                    <form id="historiac2" name="historiac2" method="POST" action="/medico/editar/HC/">
+                    <form id="historiac2" name="historiac2" method="POST" action="/paciente/calificar/cita/{{historiaC.0}}">
                         <div class="elemento">
                             <div class="infoLog">
-                                <h3>Datos Historia Clinica</h3>
+                                <h3>Datos la Cita y Historia Clinica </h3>
         
                                 <div class="elementoform">
                                     <label for="IDHistoria">ID Historia Clinica: </label>
@@ -90,29 +89,31 @@
                                 
                                 <div class="elementoform">
                                     <label for="puntaje"> Puntaje </label>
-                                    <input type="number" id="puntaje" name="puntaje" value="{{historiaC.9}}" readonly/><br>
+                                    <br>
+                                    <label>1 a 5 </label>
+                                    <input type="range" min="1" max="5" step="0.5" id="puntaje" name="puntaje" value="{{historiaC.9}}"/><br>
                                 </div>
         
                                 
                                 <div class="elementoform">
                                     <label for="trata">Comentarios</label>
-                                    <textarea id="trata" name="comentarios" rows="5" cols="30" readonly value="{{historiaC.10}}"></textarea>
+                                    <textarea id="trata" name="comentarios" rows="5" cols="30">{{historiaC.10}}</textarea>
                                 </div>
         
                                 <div class="elementoform">
                                     <label for="ndiag">Nombre del Diagnostico: </label>
-                                    <input type="text" id="ndiag" name="ndiag" value="{{historiaC.11}}"/><br>
+                                    <input type="text" id="ndiag" name="ndiag" value="{{historiaC.11}}" readonly/><br>
                                 </div>
         
         
                                 <div class="elementoform">
                                     <label for="trata"> Tratamiento  </label>
-                                    <textarea id="trata" name="trata" rows="5" cols="30" >{{historiaC.12}}</textarea>
+                                    <textarea id="trata" name="trata" rows="5" cols="30" readonly>{{historiaC.12}}</textarea>
                                 </div>
         
                                 <div class="botones">
-                                    <input type="submit" value="Registrar Cambios"/>
-                                    
+                                    <input type="submit" value="calificar"/>
+                                    <input type="submit" value="cerrar" formaction="/paciente/vercitas/" formmethod="GET"/>
                                 </div>
         
                             </div>
@@ -121,7 +122,7 @@
         
                 </div>
         </section>
-        
+        {% endif %}
     </body>
     <footer>
         <div class="pie">

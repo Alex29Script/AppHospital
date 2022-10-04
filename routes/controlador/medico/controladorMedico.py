@@ -92,6 +92,3 @@ class superMedico():
         finally:
             cur.close()
             conn.close()
-
-
-          

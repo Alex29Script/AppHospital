@@ -112,3 +112,16 @@ class pacienteControlador:
         finally:
             cursor.close()
             conexion.close()
+
+    def calificarCitaPaciente(self,info={}):
+        try:
+            conexion=sqlite3.connect(Conexion.url)
+            cursor=conexion.cursor()
+            data=(info["puntaje"],info["comentarios"],info["idcita"],info["idpaciente"])
+            cursor.execute("UPDATE Citas SET puntaje=?,comentarios=? WHERE (idcitas=? AND idpacientes=?)",data)
+            conexion.commit()
+        except:
+            print("error al calificar una cita Controlador Paciente")
+        finally:
+            cursor.close()
+            conexion.close()

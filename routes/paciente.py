@@ -2,6 +2,7 @@
 from flask import Flask, render_template, redirect,Blueprint, request, session
 
 from routes.controlador.paciente.paciente import pacienteControlador
+from routes.controlador.medico.controladorMedico import superMedico
 
 
 paciente=Blueprint("paciente",__name__)
@@ -59,5 +60,25 @@ def verCitasAtendidasPaciente():
     print(listaCitas)
     return render_template("PacienteHistoriaClinica.html", citas_paciente=listaCitas)
 
+@paciente.route("/calificar/cita/<id>",methods=["GET","POST"])
+def calificarCitaPaciente(id):
+    if request.method=="GET":
+        controladorP=pacienteControlador()
+        controladorM=superMedico()
+        idpaciente={"idpaciente":session["idusuario"]}
+        print("este es paciente", idpaciente)
+        listaCitas=controladorP.citasProgramadasExtedida(idpaciente)
+        infoHistoriaClinica=controladorM.buscarHistoriaCLinica(id)
+        return render_template("PacienteHistoriaClinica.html", citas_paciente=listaCitas,historiaC=infoHistoriaClinica)
+    if request.method=="POST":
+        infoCita={
+            "idpaciente":session["idusuario"],
+            "idcita":request.form["IDCita"],
+            "puntaje":request.form["puntaje"],
+            "comentarios":request.form["comentarios"]
+        }
+        controladorP=pacienteControlador()
+        controladorP.calificarCitaPaciente(infoCita)
+        return redirect("/paciente/vercitas/")
 
 
