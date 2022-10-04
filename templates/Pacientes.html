@@ -17,16 +17,16 @@
         
         
         <nav>            
-            <a href="Pacientes.html">Citas</a>
-            <a href="ConsultarCita.html">Consultar Citas</a>
-            <a href="PacienteHistoriaClinica.html">Historia Clinica</a>
+            <a href="/paciente/">Citas</a>
+            <a href="#tabla2">Consultar Citas</a>
+            <a href="/paciente/vercitas/">Historia Clinica</a>
             <div class="cerrar">
             <a href="index.html">Cerrar sesión </a>
             </div>
         </nav><br>
         <section>
             <h1>Asignar Cita</h1>
-            <table class="tab">
+            <table class="tab" id="tabla1">
                 
                 <tr>
                         <th>Documento</th>
@@ -56,8 +56,9 @@
         <section>
             
             <h1>Citas Programadas </h1><br>
-            <pr>Aun puede modificar o cancelar su cita</pr>
-            <table class="tab">
+            <pr>Aun puede modificar o cancelar su cita programada</pr>
+            <br>
+            <table class="tab2" id="tabla2">
                     <tr>
                         <th>id Cita</th>
                         <th>Cambiar Medico</th>
@@ -70,10 +71,10 @@
                     {% if cita.1==None %}
                     <tr>
                         <form>
-                        <td><input type="number" value="{{cita.0}}" readonly required></td>
+                        <td><input type="number" value="{{cita.0}}" name="idcita" readonly required></td>
                         <td>
                             <select name="idmedico2">
-                                <option value="{{cita.3}}">{{cita.3}}-{{cita.4}} {{cita.5}}-{{cita.6}}</option>
+                                <option value="{{cita.3}}">Actual: {{cita.3}}-{{cita.4}} {{cita.5}}-{{cita.6}}</option>
                                 {% if medicos_disponibles %}
                                 {% for medico in medicos_disponibles %}
                                 <option value="{{medico.0}}">{{medico.0}}-{{medico.1}} {{medico.2}}-{{medico.3}}</option>
@@ -83,7 +84,7 @@
                         </td>
                         <td><input type="datetime-local" id="start" name="fecha" required value="{{cita.2}}"></td>
                         <td><input type="submit" formaction="/paciente/modificar/cita/" formmethod="POST" name="modificar" value="modificar">
-                        <input type="submit" formaction="/paciente/eliminar/cita/" formmethod="POST" name="eliminar" value="cancelar"></td>            
+                        <input type="submit" formaction="/paciente/eliminar/cita/" formmethod="POST" name="cancelar" value="cancelar"></td>            
                         </form>
                     </tr>
                     {% endif %}

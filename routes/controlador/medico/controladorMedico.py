@@ -1,4 +1,3 @@
-from pickle import NONE
 import sqlite3
 
 from routes.controlador.conexion.conexion import Conexion
@@ -18,7 +17,7 @@ class superMedico():
                         WHERE t1.idmedicos=?
                         """,data)
             citasMedico=cur.fetchall()
-            if citasMedico is not NONE:
+            if citasMedico is not None:
                 print("esta es la info de CITA: ",citasMedico)
                 return citasMedico
             else:
@@ -42,12 +41,12 @@ class superMedico():
                 conexion.commit()
                 cursor.execute("SELECT idhistoriaclinica From Historiaclinica WHERE idcitas=%s" %hc["idcita"])
                 HCEncontrada=cursor.fetchone()
-                if HCEncontrada is not NONE:
+                if HCEncontrada is not None:
                     data2=(HCEncontrada[0],hc["idcita"])
                     cursor.execute("UPDATE Citas SET idhistoriaclinica=? WHERE idcitas=?", data2)
                     conexion.commit()
             except:
-                print("error al crear una HistoriaClinica - superUsurio")
+                print("error al crear una HistoriaClinica - controlador Medico")
             finally:
                 cursor.close()
                 conexion.close()
