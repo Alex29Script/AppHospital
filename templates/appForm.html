@@ -198,7 +198,7 @@
                             <div class="botones">
                                 
                                 <input type="submit" value="Actualizar" formmethod="POST" formaction="/admin/actualizar/paciente/"/>
-                                <input type="submit" value="reiniciar" formaction="/admin" >
+                                <input type="submit" value="cerrar" formaction="/admin/" formmethod="GET"/>
                             </div>
                     </form>
                     
@@ -364,6 +364,7 @@
                                     <br>
                                     <div class="botones">
                                         <input type="submit" value="actualizar" formmethod="POST" formaction="/admin/actualizar/medico/"/>
+                                        <input type="submit" value="cerrar" formaction="/admin/" formmethod="GET"/>
                                         
                                 </div>
                         </form>
@@ -466,13 +467,12 @@
 
                                     <div class="elementoform">
                                     <label for="calificacion"> Comentario </label>
-                                    <textarea id="calificacion" name="calificacion" rows="5" cols="30" >{{ citaRender.3 }}
-                                        
-                                    </textarea>
+                                    <textarea id="calificacion" name="calificacion" rows="5" cols="30" >{{ citaRender.3 }}</textarea>
                                     </div>
 
                                     <div class="botones">
-                                        <input type="submit" value="Registrar Cambios" formmethod="POST" formaction="/admin/actualizar/cita/"/>    
+                                        <input type="submit" value="Registrar Cambios" formmethod="POST" formaction="/admin/actualizar/cita/"/>
+                                        <input type="submit" value="cerrar" formaction="/admin/" formmethod="GET"/>    
                                     </div>
 
                                 </div>
@@ -568,8 +568,7 @@
                                     
                                     <div class="elementoform">
                                         <label for="trata"> Tratamiento  </label>
-                                        <textarea id="trata" name="trata" rows="5" cols="30" required>{{histRender.5}}
-                                        </textarea>
+                                        <textarea id="trata" name="trata" rows="5" cols="30" required>{{histRender.5}}</textarea>
                                     </div>
     
 
@@ -578,6 +577,7 @@
                                     
                                     <div class="botones">
                                         <input type="submit" value="Registrar Cambios" />
+                                        <input type="submit" value="cerrar" formaction="/admin/" formmethod="GET"/>
                                         
                                     </div>
 
