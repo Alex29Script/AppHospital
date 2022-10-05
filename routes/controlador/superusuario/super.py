@@ -295,7 +295,7 @@ class superControlador:
             cursor.execute("UPDATE Citas SET idcitas=?,fechayhora=?,puntaje=?,comentarios=?,idpacientes=?,idmedicos=? WHERE idcitas=?", data)
             conexion.commit()
             #comprobar si la cita tiene una historia asociada
-            data2=(cita["id"])
+            data2=(cita["id"],)
             cursor.execute("SELECT idhistoriaclinica FROM Historiaclinica WHERE idcitas=?", data2)
             
             citaAsociada=cursor.fetchone()
@@ -390,7 +390,7 @@ class superControlador:
         try:
             conexion=sqlite3.connect(Conexion.url)
             cursor=conexion.cursor()
-            data=(id)
+            data=(id,)
             cursor.execute('DELETE FROM Historiaclinica WHERE idhistoriaclinica=?', data)
             conexion.commit()
             

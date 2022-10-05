@@ -55,7 +55,7 @@ def loguear():
             else:
                 return "Usuario con error comuniquese con el admin"
         else: 
-            return "no logueado"
+            return redirect("/")
 
     
 @app.route("/formregistrarce", methods=["POST","GET"])
