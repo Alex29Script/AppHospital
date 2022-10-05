@@ -18,7 +18,6 @@ nav img{
 nav .imgT{
     color: aliceblue;
     font-size: 35px;
-   
 }
 nav{
     
@@ -129,7 +128,7 @@ section{
 .contenedorTabla{
     background-color: gray;
     float: left;
-    width: 60%;
+    width: 65%;
     border-radius: 5px;
     box-shadow: 1px 0 4px rgb(0,0,0,0.2);
     background-color: rgb(255, 255, 255);
@@ -137,7 +136,14 @@ section{
     padding: 5%;
     margin: 10px auto;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
+    max-height: 400px;
+}
+table{
+    
+    
+    
+    overflow: auto;
 }
 .contenedorTabla td{
     

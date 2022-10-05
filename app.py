@@ -1,9 +1,9 @@
 
 from flask import Flask,jsonify, request, render_template,redirect, url_for,session
-#render_template para mostrar las paginas
-#redirect los routers
-#request recibir la infromacion de los fromularios
-#jsonify manejar los archivos json
+#render_template para mostrar las paginas html rendelizarlas
+#redirect redireccionar
+#request.form recibir la informacion de los fromularios
+#jsonify manejar los  json
 #session para manejar las sessiones
 
 from routes.controlador.superusuario.super import superControlador
@@ -44,7 +44,6 @@ def loguear():
         comprobacion,tipoUser=login.autenticar(FormUsuario,FormPass)
         if comprobacion==True:
             session["idusuario"]=FormUsuario
-            session["contraseña"]=FormPass
             session["tipoUsuario"]=tipoUser
             print(session)
             if tipoUser=="paciente":

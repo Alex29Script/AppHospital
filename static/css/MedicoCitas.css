@@ -132,6 +132,7 @@ footer .pie a{
     border-radius: 5px;
     box-shadow: 1px 0 4px rgb(0,0,0,0.2);
     border: solid 2px black;
+    
 
 }
 section{
@@ -146,6 +147,6 @@ section{
     width: 60%;
     height: 40%;
     max-width: 60%;
-    max-height: 50%;
-    
+    max-height: 400px;
+    overflow: auto;
 }

@@ -101,6 +101,7 @@ nav a:hover{
     border-radius: 5px;
     box-shadow: 1px 0 4px rgb(0,0,0,0.2);
     margin-left: 10px;
+    
 
 }
 input[type="submit"]{
@@ -150,4 +151,12 @@ footer .pie img{
 }
 footer .pie a{
     color: #ffffff;   
+}
+section{
+    height: 100%;
+}
+table{
+    
+    max-height: 400px;
+    overflow: auto;
 }
