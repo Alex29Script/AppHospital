@@ -45,7 +45,7 @@ def loguear():
         if comprobacion==True:
             session["idusuario"]=FormUsuario
             session["tipoUsuario"]=tipoUser
-            print(session)
+            #print(session)
             if tipoUser=="paciente":
                 return redirect("/paciente")
             elif tipoUser=="medico":
