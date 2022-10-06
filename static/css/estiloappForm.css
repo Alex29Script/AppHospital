@@ -24,12 +24,13 @@ nav{
     width: 20%;
     float: left;
     position: sticky;
-    
+    height: 60%;
     margin: 0 px;
     background-color: #38a6f5;
-    padding: 10px 10px 20% 10px;
+    padding: 10px 10px 30px 10px;
     border-radius: 10px;
     transition: all 0.5s ease;
+
 
 }
 nav a{
@@ -51,7 +52,7 @@ nav a:hover{
     background: #042d62;
     background-color: rgb(12, 53, 129);
     overflow: hidden;
-    width: 100; 
+    width: 80%; 
     font-size: 30px;
     transition: all 0.5s ease;
     color: #fff;
@@ -274,4 +275,26 @@ footer .pie a{
     text-align: center;
     margin: 5px;
     text-decoration: none;
+}
+table a{
+    background-color: #023e8a;
+    color: #fff;
+    border: none;
+    
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 3px;
+    margin-top: 2px;
+    border-radius: 10px;
+    float: left;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    width: 100%;
+    
+}
+table a:hover{
+    color: #ffffff;
+    background-color: #2b2ec2;
+    transition: all 0.5s ease;
 }

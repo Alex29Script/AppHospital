@@ -148,6 +148,7 @@ footer .pie a{
     color: #ffffff;   
 }
 .volver{
+    
     background-color: #023e8a;
     color: #fff;
     border: none;
@@ -164,8 +165,8 @@ footer .pie a{
     text-decoration: none;
 }
 textarea{
-    width: 100%;
-    border: none;
+    
+    
     width: 100%;
     color: rgb(14, 17, 17);
     background: transparent;

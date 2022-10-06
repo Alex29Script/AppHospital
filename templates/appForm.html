@@ -25,6 +25,7 @@
         <a data-bs-toggle="collapse" href="#collapseTwo">Editar Medicos</a>
         <a data-bs-toggle="collapse" href="#collapseThree">Citas</a>
         <a data-bs-toggle="collapse" href="#collapseFour">Historia Clinica</a>
+        <a href="/admin"">Cerrar Edición</a>
         <div class="cerrar">
         <a href="/cerrar/">Cerrar sesión </a>
         </div>
@@ -40,7 +41,11 @@
                     Pacientes
                 </button>
             </h2>
-            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            {% if acordeon == 1 %}
+            <div id="collapseOne"  class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            {% else %}
+            <div id="collapseOne"  class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            {% endif %}
                 <div class="accordion-body">
                 <!-- Aquí puedes escribir el formulario de cliente -->
                 <h3 name="parte1" id="parte1">Formulario para editar cliente</h3>
@@ -214,7 +219,11 @@
                     Medicos
                 </button>
                 </h2>
+                {% if acordeon == 2 %}
+                <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                {% else %}
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                {% endif %}
                 <div class="accordion-body">
                     <div class="contenedor">
                         <form action="#" id="frbm1" name="frbm1" method="get"> 
@@ -380,7 +389,11 @@
                     Citas
                 </button>
                 </h2>
+                {% if acordeon == 3 %}
+                <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                {% else %}
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                {% endif %}
                 <div class="accordion-body">
                     <div class="contenedor">
                         <form action="/admin/crear/cita/formulario/" id="frcita1" name="frbc1" method="get"> 
@@ -489,8 +502,12 @@
                     Historia Clinica
                   </button>
                 </h2>
+                {% if acordeon == 4 %}
+                <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                {% else %}
                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
+                {% endif %}
+                <div class="accordion-body">
 
                     <div class="contenedor">
                         <form action="/admin/crear/hc/formulario/" id="historiaC" name="historiaC" method="POST"> 

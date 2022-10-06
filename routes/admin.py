@@ -61,7 +61,8 @@ def buscarPaciente(id):
             DataPaciente=controladorS.buscarPaciente(id)
             print(DataPaciente)
             tPaciente,tMedicos,tcitas2,tHS=dataTable()
-            return render_template("appForm.html", paraFormPaciente=DataPaciente,Todos_Pacientes=tPaciente, Todos_Medicos=tMedicos,Todos_citas=tcitas2,Todos_hs=tHS)
+            open_acordeon=1
+            return render_template("appForm.html", paraFormPaciente=DataPaciente,Todos_Pacientes=tPaciente, Todos_Medicos=tMedicos,Todos_citas=tcitas2,Todos_hs=tHS,acordeon=open_acordeon)
         else:
             return redirect("/")
     else:
@@ -121,7 +122,8 @@ def buscarMedico(id):
             DataMedico=controladorS.buscarMedico(id)
             print(DataMedico)
             tPaciente,tMedicos,tcitas2,tHS=dataTable()
-            return render_template("appForm.html", paraFormMedico=DataMedico,Todos_Pacientes=tPaciente, Todos_Medicos=tMedicos,Todos_citas=tcitas2,Todos_hs=tHS)
+            open_acordeon=2
+            return render_template("appForm.html", paraFormMedico=DataMedico,Todos_Pacientes=tPaciente, Todos_Medicos=tMedicos,Todos_citas=tcitas2,Todos_hs=tHS,acordeon=open_acordeon)
         else:
             return redirect("/")
     else:
@@ -202,7 +204,8 @@ def buscarCita(id):
             controladorS=superControlador()
             cita=controladorS.buscarCita(id)
             tPaciente,tMedicos,tcitas2,tHS=dataTable()
-            return render_template("appForm.html",citaRender=cita,Todos_Pacientes=tPaciente, Todos_Medicos=tMedicos,Todos_citas=tcitas2,Todos_hs=tHS)
+            open_acordeon=3
+            return render_template("appForm.html",citaRender=cita,Todos_Pacientes=tPaciente, Todos_Medicos=tMedicos,Todos_citas=tcitas2,Todos_hs=tHS,acordeon=open_acordeon)
         else:
             return redirect("/")
     else:
@@ -294,9 +297,9 @@ def editarHC(id):
             if request.method=="GET":
                 controladorS=superControlador()
                 historia=controladorS.buscarHistClinica(id)
-                
                 tPaciente,tMedicos,tcitas2,tHS=dataTable()
-                return render_template("appForm.html",histRender=historia,Todos_Pacientes=tPaciente, Todos_Medicos=tMedicos,Todos_citas=tcitas2,Todos_hs=tHS)
+                open_acordeon=4
+                return render_template("appForm.html",histRender=historia,Todos_Pacientes=tPaciente, Todos_Medicos=tMedicos,Todos_citas=tcitas2,Todos_hs=tHS,acordeon=open_acordeon)
         else:
             return redirect("/")
     else:

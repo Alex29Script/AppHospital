@@ -150,3 +150,25 @@ section{
     max-height: 400px;
     overflow: auto;
 }
+table a{
+    background-color: #023e8a;
+    color: #fff;
+    border: none;
+    
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 3px;
+    margin-top: 2px;
+    border-radius: 10px;
+    float: left;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    width: 90%;
+    
+}
+table a:hover{
+    color: #ffffff;
+    background-color: #2b2ec2;
+    transition: all 0.5s ease;
+}
