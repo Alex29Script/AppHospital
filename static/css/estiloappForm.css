@@ -298,3 +298,10 @@ table a:hover{
     background-color: #2b2ec2;
     transition: all 0.5s ease;
 }
+.cabecera .imgT{
+    width: 100%;
+    
+}
+.cabecera .imgT img{
+    width: 150px;
+}
