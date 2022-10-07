@@ -1,13 +1,14 @@
+
 from flask import Flask,jsonify, request, render_template,redirect, url_for,session
-#render_template para mostrar las paginas
-#redirect los routers
-#request recibir la infromacion de los fromularios
-#jsonify manejar los archivos json
+#render_template para mostrar las paginas html rendelizarlas
+#redirect redireccionar
+#request.form recibir la informacion de los fromularios
+#jsonify manejar los  json
 #session para manejar las sessiones
 
-
+from routes.controlador.superusuario.super import superControlador
 from routes.controlador.conexion.loginConsulta import loginConsultaDB
-
+from routes.admin import tomarInfoPaciente
 
 
 from routes.admin import superU
@@ -43,9 +44,8 @@ def loguear():
         comprobacion,tipoUser=login.autenticar(FormUsuario,FormPass)
         if comprobacion==True:
             session["idusuario"]=FormUsuario
-            session["contraseña"]=FormPass
             session["tipoUsuario"]=tipoUser
-            print(session)
+            #print(session)
             if tipoUser=="paciente":
                 return redirect("/paciente")
             elif tipoUser=="medico":
@@ -55,15 +55,25 @@ def loguear():
             else:
                 return "Usuario con error comuniquese con el admin"
         else: 
-            return "no logueado"
+            return redirect("/")
 
     
-@app.route("/formregistrarce")
+@app.route("/formregistrarce", methods=["POST","GET"])
 def registroform():
-    return render_template("registro.html")
+    if request.method=="GET":
+        return render_template("registro.html")
+    elif request.method=="POST":
+        nuevo_paciente=tomarInfoPaciente()
+        controladorS=superControlador()
+        controladorS.crearnuevopaciente(nuevo_paciente)
+        return redirect("/")
+    else:
+        return redirect("/")
 
-
-
+@app.route("/cerrar/",methods=["GET"])
+def cerrarSession():
+    session.clear()
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

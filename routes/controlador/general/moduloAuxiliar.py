@@ -25,7 +25,7 @@ class Auxiliar:
                 
             return Completa
         except:
-                print("error")
+                print("error en auxiliar")
         finally:
             cur.close()
             conexion.close()

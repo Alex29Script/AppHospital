@@ -1,38 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>app</title>
-    <link href="../static/css/estiloappForm.css" rel="stylesheet">
+    <title>Admin</title>
+    <link href="{{url_for('static',filename='css/estiloappForm.css') }}" rel="stylesheet">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </head>
 <section class="cabecera">
-    <div class="imgT"><img src="./img/log.png"></img>
+    <div class="imgT"><img src="{{url_for('static',filename='img/hospital.png') }}"></img>
         <h1>Hospital General de Barranquilla</h1>
             
     </div>
 </section>
 <body>
     <nav>
-        <div class="imgT"><img src="./img/log.png"></img>
+        <div class="imgT"><img src="{{url_for('static',filename='img/hospital.png') }}"></img>
         
         </div>
         <a data-bs-toggle="collapse" href="#collapseOne">Editar Pacientes</a>
         <a data-bs-toggle="collapse" href="#collapseTwo">Editar Medicos</a>
         <a data-bs-toggle="collapse" href="#collapseThree">Citas</a>
         <a data-bs-toggle="collapse" href="#collapseFour">Historia Clinica</a>
+        <a href="/admin">Cerrar Edición</a>
         <div class="cerrar">
-        <a href="#">Cerrar sesión </a>
+        <a href="/cerrar/">Cerrar sesión </a>
         </div>
 
     </nav>
     
     <section>
-        <h1>tabla o formulario</h1>
+        <h1>Gestion integral de la aplicación </h1>
         <div class="accordion" id="accordionExample">
             <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
@@ -40,19 +41,23 @@
                     Pacientes
                 </button>
             </h2>
-            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            {% if acordeon == 1 %}
+            <div id="collapseOne"  class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            {% else %}
+            <div id="collapseOne"  class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            {% endif %}
                 <div class="accordion-body">
                 <!-- Aquí puedes escribir el formulario de cliente -->
                 <h3 name="parte1" id="parte1">Formulario para editar cliente</h3>
                 <!-- Aquí puedes escribir el formulario de busqueda para cliente -->
                 <div class="contenedor">
-                    <form action="#" id="frbp1" name="frbp" method="get"> 
+                    <form action="" id="frbp1" name="frbp" method="GET"> 
                     <div class="elementoform" >
                         <label for="IDPaciente"> ID Paciente</label> 
-                        <input type="number"  id="IDPaciente"  required="true" name="IDPaciente"/>               
+                        <input type="number"  id="IDPaciente"   required="true" name="IDPaciente"/>               
+                        <input type="submit" value="Crear Paciente" formmethod="POST" formaction="/admin/crear/paciente/"/>
                         <input type="submit" value="editar"/>
-                        <input type="submit" value="crear"/> 
-                        <input type="submit" value="eliminar"/> 
+                        <input type="submit" value="eliminar"  formmethod="POST" formaction="/admin/eliminar/paciente/"/> 
 
                     </div>
                     
@@ -73,7 +78,7 @@
                                     <td> {{ paciente.0 }}  </td>
                                     <td> {{ paciente.1 }}  </td>
                                     <td> {{ paciente.2 }}  </td>
-                                    <td> <a href="admin/editar/{{paciente.0}}">editar</a> <a href="admin/eliminar/{{paciente.0}}">eliminar</a>  </td>
+                                    <td> <a href="/admin/buscar/paciente/{{paciente.0}}">editar</a> <a href="/admin/eliminar/paciente/tabla/{{paciente.0}}">eliminar</a>  </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -85,20 +90,23 @@
 
 
 
-
+                {% if paraFormPaciente %}
                 <div class="contenedor">
+                    
                     <form id="Paciente2" name="formreg2" method="get">
                         <div class="elemento">
+                            
                             <div class="infoLog">
+                                
                                 <h3>Datos para login</h3>
                                 <div class="elementoform">
                                 <label for="IDUsuario">Cedula: </label>
-                                <input type="number" id="IDUsuario" name="idusuario" required="true" placeholder="su numero de cedula"/><br>
+                                <input type="number" min="1" id="IDUsuario" name="idusuario" required="true" placeholder="su numero de cedula" value="{{ paraFormPaciente.0 }}"/><br>
                                 </div>
 
                                 <div class="elementoform">
                                 <label for="nombre">Nombre</label>
-                                <input type="text" id="nombre" name="nombre" required="true" placeholder="su nombre"/><br>
+                                <input type="text" id="nombre" name="nombre" required="true" placeholder="su nombre" value="{{ paraFormPaciente.1 }}"/><br>
                                 </div>
 
 
@@ -106,21 +114,21 @@
                                 <label for="apellido">Apellido:</lable>
                                 <input type="text" id="apellido" name="apellido" 
                                 placeholder="escriba sus apellidos"
-                                required="true"/>
+                                required="true" value="{{ paraFormPaciente.2 }}"/>
                                 </div>
                                 
                                 <div class="elementoform">
                                 <label for="pass">Contraseña:</label>
                                 <input type="password" id="pass" name="pass" 
                                 placeholder="escriba su contraseña"
-                                required="true"/>
+                                required="true" value="{{ paraFormPaciente.15 }}"/>
                                 </div>
 
                                 <div class="elementoform">
                                 <label for="eps">EPS:</lable><br/>
                                     <input type="text" id="eps" name="eps" 
                                     placeholder="EPS del Beneficiario"
-                                    required="true"/>
+                                    required="true" value="{{ paraFormPaciente.13 }}"/>
                                 </div>
                             </div>
                             
@@ -129,19 +137,19 @@
                                 
                                 <div class="elementoform">
                                 <label for="tel">telefono:</lable>
-                                <input type="number" id="tel" name="tel" placeholder="escriba su telefono"/><br/>
+                                <input type="number" id="tel" name="tel" placeholder="escriba su telefono" value="{{ paraFormPaciente.7 }}"/><br/>
                                 </div>
 
                                 <div class="elementoform">
                                 <label for="mail">email:</lable>
                                 <input type="email" id="mail" name="email" 
-                                placeholder="escriba su email"/>
+                                placeholder="escriba su email" value="{{ paraFormPaciente.14 }}"/>
                                 </div>
 
                                 <div class="elementoform">
-                                <label for="bird">Fecha de Nacimiento:</lable>
+                                <label for="bird">Fecha de Nacimiento (D/M/A):</lable>
                                 <input type="datetime" id="brid" name="bird" 
-                                placeholder="escriba su su fecha de nacimiento"/>
+                                placeholder="escriba su su fecha de nacimiento" value="{{ paraFormPaciente.3 }}"/>
                                 </div>
                             
                                 <div class="elementoform">
@@ -150,52 +158,57 @@
                                 <input type="radio" id="femenino" name="sexo" value="femenino"/><label>femenino.</lable>
                                 
                                 <input type="radio" id="masculino" name="sexo" value="masculino"/><label>masculino.</lable>
+                                <input type="radio" id="masculino" name="sexo" value="{{ paraFormPaciente.4 }}" checked/><label>{{ paraFormPaciente.4 }}</lable>
                                 <br>
                                 </div>
 
                                 <div class="elementoform">
                                 <lebel for="escivil"> Estado Civil</lebel><br/>
                                 <select id="escivil" name="escivil">
+                                    <option value="{{ paraFormPaciente.5 }}">{{ paraFormPaciente.5 }}</option>
                                     <option value="solter@">Solter@</option>
                                     <option value="casad@">Casad@</option>
                                     <option value="viud@">Viud@</option>
-                                    <option value="unionlibre">Union Libre</option></select>
+                                    <option value="unionlibre">Union Libre</option>
+                                </select>
                             
                                 </div>
                                 
                                 <div class="elementoform">
                                 <label for="direccion">Direccion:</label>
                                 <input type="text" id="direccion" name="direccion" 
-                                placeholder="escriba su direccion">
+                                placeholder="escriba su direccion" value="{{ paraFormPaciente.8 }}">
                                 </div>
                                 
                                 <div class="elementoform">
                                 <label for="discapacidad">Discapacidad:</label>
                                 <input type="text" id="discapacidad" name="discapacidad" 
-                                placeholder="tiene alguna discapacidad?"><br>
+                                placeholder="tiene alguna discapacidad?" value="{{ paraFormPaciente.9 }}"><br>
                                 </div>
                                 
                                 <div class="elementoform">
                                 <label for="job">Ocupacion:</label>
                                 <input type="text" id="job" name="job" 
-                                placeholder="escriba su ocupacion">
+                                placeholder="escriba su ocupacion" value="{{ paraFormPaciente.6 }}">
                                 </div>
 
                                 <div class="elementoform">
                                 <label for="rh">rh:</label><br/>
                                 <input type="text" id="rh" name="rh" 
-                                placeholder="escriba su grupo sanguineo"><br>
+                                placeholder="escriba su grupo sanguineo" value="{{ paraFormPaciente.10 }}"><br>
                                 </div>
-
+                                
                             </div>               
                                 <br>
-                                <div class="botones">
-                                    <input type="submit" value="Registrar"/>
-                                    <input type="reset" value="reiniciar formulario">
+                            <div class="botones">
+                                
+                                <input type="submit" value="Actualizar" formmethod="POST" formaction="/admin/actualizar/paciente/"/>
+                                <input type="submit" value="cerrar" formaction="/admin/" formmethod="GET"/>
                             </div>
                     </form>
+                    
                 </div>
-
+                {% endif %}
 
                 </div>
             </div>
@@ -206,23 +219,29 @@
                     Medicos
                 </button>
                 </h2>
+                {% if acordeon == 2 %}
+                <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                {% else %}
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                {% endif %}
                 <div class="accordion-body">
                     <div class="contenedor">
                         <form action="#" id="frbm1" name="frbm1" method="get"> 
                             <div class="elementoform" >
-                                <h4>Buscar Medico</h4>
+                                <h4>crear Medico</h4>
                                 <label for="IDMedico"> ID Medico</label> 
-                                <input type="number" id="IDMedico"  required="true" name="IDPaciente"/>               
-                                <input type="submit" value="editar"/>
-                                <input type="submit" value="crear"/> 
-                                <input type="submit" value="eliminar"/>
+                                <input type="number" id="IDMedico"  required="true" name="IDMedico"/>               
+                                
+                                <input type="submit" value="Registar nuevo Medico" formmethod="POST" formaction="/admin/crear/medicofromulario/" /> 
+                                
                             </div>
                         </form>
                         
                         <div class="contenedorTabla">
                             <table class="tab">
+                                <caption>Medicos</caption>
                                 <thead>
+                                    
                                     <tr>
                                         <th>Documento</th>
                                         <th>Nombre</th>
@@ -237,8 +256,8 @@
                                         <td> {{ medico.0 }}  </td>
                                         <td> {{ medico.1 }}  </td>
                                         <td> {{ medico.2 }}  </td>
-                                        <td> No Establecido </td>
-                                        <td> <a href="admin/editar/{{medico.0}}">editar</a> <a href="admin/eliminar/{{medico.0}}">eliminar</a>  </td>
+                                        <td> {{ medico.3 }} </td>
+                                        <td> <a href="/admin/buscar/medico/{{medico.0}}">editar</a> <a href="/admin/eliminar/medico/{{medico.0}}" method="POST">eliminar</a>  </td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>
@@ -248,6 +267,7 @@
 
 
                     </div>
+                    {% if paraFormMedico %}
                     <div class="contenedor">
                         <form id="med2" name="med2" method="get">
                             <div class="elemento">
@@ -255,12 +275,12 @@
                                     <h3>Datos para login</h3>
                                     <div class="elementoform">
                                     <label for="IDUsuario">Cedula: </label>
-                                    <input type="number" id="IDUsuario" name="idusuario" required="true" placeholder="su numero de cedula"/><br>
+                                    <input type="number" min="1" id="IDUsuario" name="idusuario" required="true" placeholder="su numero de cedula" value="{{paraFormMedico.0}}"/><br>
                                     </div>
         
                                     <div class="elementoform">
                                     <label for="nombre">Nombre</label>
-                                    <input type="text" id="nombre" name="nombre" required="true" placeholder="su nombre"/><br>
+                                    <input type="text" id="nombre" name="nombre" required="true" placeholder="su nombre" value="{{paraFormMedico.1}}"/><br>
                                     </div>
         
         
@@ -268,21 +288,21 @@
                                     <label for="apellido">Apellido:</lable>
                                     <input type="text" id="apellido" name="apellido" 
                                     placeholder="escriba sus apellidos"
-                                    required="true"/>
+                                    required="true" value="{{paraFormMedico.2}}"/>
                                     </div>
                                     
                                     <div class="elementoform">
                                     <label for="pass">Contraseña:</label>
                                     <input type="password" id="pass" name="pass" 
                                     placeholder="escriba su contraseña"
-                                    required="true"/>
+                                    required="true" value="{{paraFormMedico.15}}"/>
                                     </div>
         
                                     <div class="elementoform">
-                                    <label for="espM">Especilidad:</lable><br/>
+                                    <label for="espM">Especialidad:</lable><br/>
                                         <input type="text" id="espM" name="espM" 
                                         placeholder="Especialidad en Medicina"
-                                        required="true"/>
+                                        required="true" value="{{paraFormMedico.11}}"/>
                                     </div>
                                 </div>
                                 
@@ -291,26 +311,26 @@
                                     
                                     <div class="elementoform">
                                     <label for="tel">telefono:</lable>
-                                    <input type="number" id="tel" name="tel" placeholder="escriba su telefono"/><br/>
+                                    <input type="number" id="tel" name="tel" placeholder="escriba su telefono" value="{{paraFormMedico.7}}"/><br/>
                                     </div>
         
                                     <div class="elementoform">
                                     <label for="mail">email:</lable>
                                     <input type="email" id="mail" name="email" 
-                                    placeholder="escriba su email"/>
+                                    placeholder="escriba su email" value="{{paraFormMedico.14}}"/>
                                     </div>
         
                                     <div class="elementoform">
-                                    <label for="bird">Fecha de Nacimiento:</lable>
+                                    <label for="bird">Fecha de Nacimiento (D/M/A):</lable>
                                     <input type="datetime" id="brid" name="bird" 
-                                    placeholder="escriba su su fecha de nacimiento"/>
+                                    placeholder="escriba su su fecha de nacimiento" value="{{paraFormMedico.3}}"/>
                                     </div>
                                 
                                     <div class="elementoform">
                                     <label>genero:</lable>
-                                    <br>   
+                                    <br>
+                                    <input type="radio" id="masculino" name="sexo" value="{{paraFormMedico.4}}" checked/><label>{{paraFormMedico.4}}</lable>   
                                     <input type="radio" id="femenino" name="sexo" value="femenino"/><label>femenino.</lable>
-                                    
                                     <input type="radio" id="masculino" name="sexo" value="masculino"/><label>masculino.</lable>
                                     <br>
                                     </div>
@@ -318,45 +338,47 @@
                                     <div class="elementoform">
                                     <lebel for="escivil"> Estado Civil</lebel><br/>
                                     <select id="escivil" name="escivil">
+                                        <option value="{{paraFormMedico.5}}">{{paraFormMedico.5}}</option>
                                         <option value="solter@">Solter@</option>
                                         <option value="casad@">Casad@</option>
                                         <option value="viud@">Viud@</option>
                                         <option value="unionlibre">Union Libre</option></select>
-                                   
                                     </div>
                                     
                                     <div class="elementoform">
                                     <label for="direccion">Direccion:</label>
                                     <input type="text" id="direccion" name="direccion" 
-                                    placeholder="escriba su direccion">
+                                    placeholder="escriba su direccion" value="{{paraFormMedico.8}}">
                                     </div>
                                     
                                     <div class="elementoform">
-                                    <label for="discapacidad">Discapacidad:</label>
-                                    <input type="text" id="discapacidad" name="discapacidad" 
-                                    placeholder="tiene alguna discapacidad?"><br>
+                                    <label for="discapacidad">Tarjeta Profesional</label>
+                                    <input type="text" id="discapacidad" name="tp" 
+                                    placeholder="tarjeta profesional" value="{{paraFormMedico.12}}"><br>
                                     </div>
                                     
                                     <div class="elementoform">
                                     <label for="job">Ocupacion:</label>
                                     <input type="text" id="job" name="job" 
-                                    placeholder="escriba su ocupacion">
+                                    placeholder="escriba su ocupacion" value="{{paraFormMedico.6}}">
                                     </div>
         
                                     <div class="elementoform">
                                     <label for="rh">rh:</label><br/>
                                     <input type="text" id="rh" name="rh" 
-                                    placeholder="escriba su grupo sanguineo"><br>
+                                    placeholder="escriba su grupo sanguineo" value="{{paraFormMedico.10}}"><br>
                                     </div>
         
                                 </div>               
                                     <br>
                                     <div class="botones">
-                                        <input type="submit" value="Registrar"/>
-                                        <input type="reset" value="reiniciar formulario">
+                                        <input type="submit" value="actualizar" formmethod="POST" formaction="/admin/actualizar/medico/"/>
+                                        <input type="submit" value="cerrar" formaction="/admin/" formmethod="GET"/>
+                                        
                                 </div>
                         </form>
-                    </div>                 
+                    </div>
+                    {% endif %}                 
                 </div>
             </div>
             </div>
@@ -367,16 +389,18 @@
                     Citas
                 </button>
                 </h2>
+                {% if acordeon == 3 %}
+                <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                {% else %}
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                {% endif %}
                 <div class="accordion-body">
                     <div class="contenedor">
-                        <form action="#" id="frcita1" name="frbc1" method="get"> 
+                        <form action="/admin/crear/cita/formulario/" id="frcita1" name="frbc1" method="get"> 
                         <div class="elementoform" >
-                            <label for="IDCitas"> ID Citas</label> 
-                            <input type="number"  id="IDCitas"  required="true" name="IDCitas"/>               
-                            <input type="submit" value="editar"/>
-                            <input type="submit" value="crear"/> 
-                            <input type="submit" value="eliminar"/> 
+                            
+                            <input type="submit" value="crear nueva cita"/> 
+                            
     
                         </div>
                         </form>
@@ -396,11 +420,11 @@
                                     {% for cita in Todos_citas %}
                                     <tr>
                                         <td>{{cita.0}} </td>
-                                        <td>CC{{cita.2}} {{cita.5}}</td>
-                                        <td>CC{{cita.3}} {{cita.6}}</td>
-                                        <td>{{cita.4}}</td>
+                                        <td>C.C.{{cita.2}}-{{cita.3}} {{cita.4}}</td>
+                                        <td>C.C.{{cita.5}}-{{cita.6}} {{cita.7}} </td>
+                                        <td><input type="datetime-local" id="fecha" name="fecha" value="{{cita.1}}" readonly/></td>
                                         
-                                        <td> <a href="admin/editar/cita/{{cita.0}}">editar</a> <a href="admin/editar/citas/{{cita.0}}">eliminar</a>  </td>
+                                        <td> <a href="/admin/buscarCita/{{cita.0}}">editar</a> <a href="/admin/eliminar/cita/{{cita.0}}">eliminar</a>  </td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -410,6 +434,7 @@
 
 
                     </div>
+                    {%if citaRender %}
                     <div class="contenedor">
                         <form id="citas1" name="citas1" method="get">
                             <div class="elemento">
@@ -418,62 +443,56 @@
 
                                     <div class="elementoform">
                                         <label for="IDCitasB">IDCita: </label>
-                                        <input type="number" readonly="true" id="IDCitasB" name="IDCitasB" required="true" placeholder="su numero de la cita"/><br>
+                                        <input type="number" readonly="true" id="IDCitasB" name="IDCitasB" required="true" placeholder="su numero de la cita" value="{{ citaRender.0 }}"/><br>
                                     </div>
 
                                     <div class="elementoform">
                                         <label for="IDmed">ID Medico: </label>
-                                        <input type="number" id="IDmed" name="IDmed"/><br>
+                                        <input type="number" id="IDmed" name="IDmed" value="{{ citaRender.7 }}"/><br>
                                     </div>
 
                                     <div class="elementoform">
                                         <label for="nmed">Nombre Del Medico: </label>
-                                        <input type="text" id="nmed" name="nmed" readonly="true"/><br>
+                                        <input type="text" id="nmed" name="nmed" readonly="true" value="{{ citaRender.8 }} {{ citaRender.9 }}"/><br>
                                     </div>
 
                                     <div class="elementoform">
                                         <label for="IDPaciente">ID Paciente: </label>
-                                        <input type="number" id="IDPaciente" name="IDPaciente"/><br>
+                                        <input type="number" id="IDPaciente" name="IDPaciente" value="{{ citaRender.4 }}"/><br>
                                     </div>
 
                                     <div class="elementoform">
                                         <label for="npaciente">Nombre del Paciente: </label>
-                                        <input type="text" id="npaciente" name="npaciente" readonly="true"/><br>
-                                    </div>
-
-                                  
-                                    <div class="elementoform">
-                                        <label for="puntaje">Puntaje</label>
-                                        <input type="number" id="puntaje" name="puntaje"/><br>
+                                        <input type="text" id="npaciente" name="npaciente" readonly="true" value="{{ citaRender.5 }} {{ citaRender.6 }}"/><br>
                                     </div>
 
                                     
 
                                     <div class="elementoform">
+                                        <label for="puntaje">Puntaje</label>
+                                        <input type="number" id="puntaje" name="puntaje" value="{{ citaRender.2 }}"/><br>
+                                    </div>
+
+                                    <div class="elementoform">
                                         <label for="fecha">Fecha</label>
-                                        <input type="datetime-local" id="fecha" name="fecha"/><br>
+                                        <input type="datetime-local" id="fecha" name="fecha" value="{{ citaRender.1 }}"/><br>
                                     </div>
 
                                     <div class="elementoform">
                                     <label for="calificacion"> Comentario </label>
-                                    <textarea id="calificacion" name="calificacion" rows="5" cols="30">
-                                    </textarea>
+                                    <textarea id="calificacion" name="calificacion" rows="5" cols="30" >{{ citaRender.3 }}</textarea>
                                     </div>
 
-                                    
-
-
-
-                                    
                                     <div class="botones">
-                                        <input type="submit" value="Registrar"/>
-                                        <input type="reset" value="reiniciar formulario">
+                                        <input type="submit" value="Registrar Cambios" formmethod="POST" formaction="/admin/actualizar/cita/"/>
+                                        <input type="submit" value="cerrar" formaction="/admin/" formmethod="GET"/>    
                                     </div>
 
                                 </div>
                             </div>
                         </form>
                     </div>
+                    {% endif %}
                 </div>
                 </div>
             </div>
@@ -483,17 +502,20 @@
                     Historia Clinica
                   </button>
                 </h2>
+                {% if acordeon == 4 %}
+                <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                {% else %}
                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
+                {% endif %}
+                <div class="accordion-body">
 
                     <div class="contenedor">
-                        <form action="#" id="historiaC" name="historiaC" method="get"> 
+                        <form action="/admin/crear/hc/formulario/" id="historiaC" name="historiaC" method="POST"> 
                         <div class="elementoform" >
-                            <label for="IDHistoria"> ID Historia Clinica</label> 
-                            <input type="number"  id="IDHistoria"  required="true" name="IDHistoria"/>               
-                            <input type="submit" value="editar"/>
-                            <input type="submit" value="crear"/> 
-                            <input type="submit" value="eliminar"/> 
+                            <label for="IDHistoria"> ID Cita</label> 
+                            <input type="number"  id="IDHistoria"  required="true" placeholder="ingresa el idcita con la cual se va ateneder el paciente" name="IDCita" />               
+                            <input type="submit" value="crear historia clínica"/> 
+                            
     
                         </div>
                         </form>
@@ -514,11 +536,11 @@
                                     {% for hs in Todos_hs %}
                                     <tr>
                                         <td>{{hs.0}}</td>
-                                        <td>{{hs.2}}</td>
-                                        <td>C.C.{{hs.2}} {{hs.5}}</td>
-                                        <td>C.C.{{hs.3}} {{hs.6}}</td>
-                                        <td>{{hs.4}}</td>
-                                        <td> <a href="admin/editar/histc/{{hs.0}}">editar</a> <a href="admin/editar/histc/{{hs.0}}">eliminar</a>  </td>
+                                        <td>{{hs.1}}</td>
+                                        <td>C.C.{{hs.2}} {{hs.3}}{{hs.4}}</td>
+                                        <td>C.C.{{hs.5}} {{hs.6}} {{hs.7}}</td>
+                                        <td>{{hs.8}}</td>
+                                        <td> <a href="/admin/editar/hc/{{hs.0}}">editar</a> <a href="/admin/eliminar/hc/{{hs.0}}">eliminar</a>  </td>
                                     </tr>
                                     {%endfor%}
                                 </tbody>
@@ -526,54 +548,44 @@
                         
                         </div>
                     </div>
-
+                    {% if histRender %}
                     <div class="contenedor">
-                        <form id="historiac2" name="historiac2" method="get">
+                        <form id="historiac2" name="historiac2" method="POST" action="/admin/editar/hc/">
                             <div class="elemento">
                                 <div class="infoLog">
                                     <h3>Datos Historia Clinica</h3>
 
                                     <div class="elementoform">
                                         <label for="IDHistoria">ID Historia Clinica: </label>
-                                        <input type="number" readonly="true" id="IDHistoria" name="IDHistoria" required="true" /><br>
+                                        <input type="number" readonly="true" id="IDHistoria" name="IDHistoria" required="true" value="{{histRender.0}}"/><br>
                                     </div>
 
                                     <div class="elementoform">
                                         <label for="IDCita">ID Cita: </label>
-                                        <input type="number" id="IDCita" name="IDCita"/><br>
+                                        <input type="number" id="IDCita" name="IDCita" readonly required value="{{histRender.3}}"/><br>
                                     </div>
 
                                     <div class="elementoform">
                                         <label for="IDmed">ID Medico: </label>
-                                        <input type="number" id="IDmed" name="IDmed"/><br>
+                                        <input type="number" id="IDmed" name="IDmed" required value="{{histRender.2}}"/><br>
                                     </div>
 
                                     <div class="elementoform">
                                         <label for="IDPaciente">ID Paciente: </label>
-                                        <input type="number" id="IDPaciente" name="IDPaciente"/><br>
+                                        <input type="number" id="IDPaciente" name="IDPaciente" required value="{{histRender.1}}"/><br>
                                     </div>
 
                                     <div class="elementoform">
                                         <label for="ndiag">Nombre del Diagnostico: </label>
-                                        <input type="text" id="ndiag" name="ndiag" /><br>
+                                        <input type="text" id="ndiag" name="ndiag" required value="{{histRender.4}}"/><br>
                                     </div>
 
-                                    <div class="elementoform">
-                                        <label for="nEnfer"> Enfermedad  </label>
-                                        <input type="text" id="nEnfer" name="nEnfer" /><br>
-                                    </div>
+                                    
 
-
-                                    <div class="elementoform">
-                                    <label for="des"> Descripción  </label>
-                                    <textarea id="des" name="des" rows="5" cols="30">
-                                    </textarea>
-                                    </div>
-
+                                    
                                     <div class="elementoform">
                                         <label for="trata"> Tratamiento  </label>
-                                        <textarea id="trata" name="trata" rows="5" cols="30">
-                                        </textarea>
+                                        <textarea id="trata" name="trata" rows="5" cols="30" required>{{histRender.5}}</textarea>
                                     </div>
     
 
@@ -581,15 +593,16 @@
 
                                     
                                     <div class="botones">
-                                        <input type="submit" value="Registrar"/>
-                                        <input type="reset" value="reiniciar formulario">
+                                        <input type="submit" value="Registrar Cambios" />
+                                        <input type="submit" value="cerrar" formaction="/admin/" formmethod="GET"/>
+                                        
                                     </div>
 
                                 </div>
                             </div>
                         </form>
                     </div>
- 
+                    {% endif %}
                   </div>
                 </div>
 

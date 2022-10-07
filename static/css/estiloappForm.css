@@ -18,19 +18,19 @@ nav img{
 nav .imgT{
     color: aliceblue;
     font-size: 35px;
-   
 }
 nav{
     
     width: 20%;
     float: left;
     position: sticky;
-    
+    height: 60%;
     margin: 0 px;
     background-color: #38a6f5;
-    padding: 10px 10px 20% 10px;
+    padding: 10px 10px 30px 10px;
     border-radius: 10px;
     transition: all 0.5s ease;
+
 
 }
 nav a{
@@ -52,7 +52,7 @@ nav a:hover{
     background: #042d62;
     background-color: rgb(12, 53, 129);
     overflow: hidden;
-    width: 100; 
+    width: 80%; 
     font-size: 30px;
     transition: all 0.5s ease;
     color: #fff;
@@ -129,7 +129,7 @@ section{
 .contenedorTabla{
     background-color: gray;
     float: left;
-    width: 60%;
+    width: 65%;
     border-radius: 5px;
     box-shadow: 1px 0 4px rgb(0,0,0,0.2);
     background-color: rgb(255, 255, 255);
@@ -137,7 +137,14 @@ section{
     padding: 5%;
     margin: 10px auto;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
+    max-height: 400px;
+}
+table{
+    
+    
+    
+    overflow: auto;
 }
 .contenedorTabla td{
     
@@ -253,4 +260,48 @@ footer .pie img{
 footer .pie a{
     color: #ffffff;   
 }
-
+.volver{
+    background-color: #023e8a;
+    color: #fff;
+    border: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+    float: left;
+    width: 10%;
+    text-align: center;
+    margin: 5px;
+    text-decoration: none;
+}
+table a{
+    background-color: #023e8a;
+    color: #fff;
+    border: none;
+    
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 3px;
+    margin-top: 2px;
+    border-radius: 10px;
+    float: left;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    width: 100%;
+    
+}
+table a:hover{
+    color: #ffffff;
+    background-color: #2b2ec2;
+    transition: all 0.5s ease;
+}
+.cabecera .imgT{
+    width: 100%;
+    
+}
+.cabecera .imgT img{
+    width: 150px;
+}

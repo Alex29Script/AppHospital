@@ -5,92 +5,88 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Medico</title>
-        <link href="../static/css/MedicoCitas.css" rel="stylesheet">
+        <link href="{{url_for('static',filename='css/MedicoCitas.css') }}" rel="stylesheet">
 
     </head>
     <footer>
-        <div class="imgT"><img src="./img/log.png">Hospital General de Barranquilla</img>
+        <div class="imgT"><img src="{{url_for('static',filename='img/hospital.png') }}">Hospital General de Barranquilla</img>
             
         </div>
     </footer>
+      
+    <nav>
+        <a href="/medico/">Citas</a>
+        <div class="cerrar">
+         <a href="/cerrar/">Cerrar sesión </a>
+         </div>
+     </nav>
     <body>
-        
-        
-        <nav>
-           <a href="MedicoCitas.html">Citas</a>
-            <a href="MedicoHistoriaClinica.html">Historia Clinica</a>
-            <div class="cerrar">
-            <a href="#">Cerrar sesión </a>
-            </div>
-        </nav><br>
-        <table class="tab">
-            <h1>Citas</h1>            
-            <tr>
-                <th>Documento</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Fecha y Hora</th>
-                <th>Asiste</th>
+        <br>
+        <section>
+                <h1>Citas programadas para usted</h1>
+                <table class="tab">
+                                
+                    <tr>
+                        <th>idCita</th>
+                        <th>Fecha y Hora</th>
+                        <th>Documento</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Accion</th>
+                    
+                    </tr>
+                    {% if citas_medico %}
+                    {% for cita in citas_medico %}
+                    {% if cita.5 == None %}
+                    <tr>
+                        
+                            <td>{{cita.0}}</td>
+                            <td><input type="datetime-local" id="fecha" name="trip-start" value="{{cita.1}}" readonly></td>
+                            <td>{{cita.2}}</td>
+                            <td>{{cita.3}}</td>
+                            <td>{{cita.4}}</td>
+                            <td><a href="/medico/atender/{{cita.0}}_{{cita.2}}_{{cita.3}} {{cita.4}}">atender</a></td>
+                                    
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %} 
+                </table>
             
-            </tr>
-
-            <tr>
-                <td>1234</td>
-                <td>Luz Amanda</td>
-                <td>Gaviria</td>
-                <td><input type="datetime-local" id="start" name="trip-start"
-                    value="2018-07-22"
-                    min="2018-01-01" max="2018-12-31"></td>
-                    <td><button type="submit" onclick="window.location.href='./MedicoHistoriaClinica.html';">Si</button> 
-                    <button>No</button></td>             
-            </tr>
-            <tr>
-                <td>9020</td>
-                <td>Nellys</td>
-                <td>Calderin</td>
-                <td><input type="datetime-local" id="start" name="trip-start"
-                    value="2018-07-22"
-                    min="2018-01-01" max="2018-12-31"></td>
-                    <td><button type="submit" onclick="window.location.href='./MedicoHistoriaClinica.html';">Si</button> 
-                    <button>No</button></td>  
-
-            </tr>
-            <tr>
-                <td>3452</td>
-                <td>Alexis</td>
-                <td>Ariza</td>
-                <td><input type="datetime-local" id="start" name="trip-start"
-                    value="2018-07-22"
-                    min="2018-01-01" max="2018-12-31"></td>
-                    <td><button type="submit" onclick="window.location.href='./MedicoHistoriaClinica.html';">Si</button> 
-                    <button>No</button></td> 
-
-            </tr>
-            <tr>
-                <td>9076</td>
-                <td>Ximena</td>
-                <td>Quiceno</td>
-                <td><input type="datetime-local" id="start" name="trip-start"
-                    value="2018-07-22"
-                    min="2018-01-01" max="2018-12-31"></td>
-                    <td><button type="submit" onclick="window.location.href='./MedicoHistoriaClinica.html';">Si</button> 
-                    <button>No</button></td> 
-
-            </tr>
-            <tr>
-                <td>3076</td>
-                <td>Gabriel</td>
-                <td>Rodriguez</td>
-                <td><input type="datetime-local" id="start" name="trip-start"
-                    value="2018-07-22"
-                    min="2018-01-01" max="2018-12-31"></td>
-                    <td><button type="submit" onclick="window.location.href='./MedicoHistoriaClinica.html';">Si</button> 
-                    <button>No</button></td> 
-
-            </tr>
-             
-        </table>
-        
+        </section>
+        <section>
+                <h1>Citas atendidas por usted </h1>  
+                <table class="tab">
+                    <tr>
+                        <th>idCita</th>
+                        <th>id HistoClinica</th>
+                        <th>Fecha y Hora</th>
+                        <th>Documento</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Accion</th>
+                    
+                    </tr>
+                    {% if citas_medico %}
+                    {% for cita in citas_medico %}
+                    {% if cita.5 != None %}
+                    <tr>
+                        
+                            <td>{{cita.0}}</td>
+                            <td>{{cita.5}}</td>
+                            <td><input type="datetime-local" id="fecha" name="trip-start" value="{{cita.1}}" readonly></td>
+                            <td>{{cita.2}}</td>
+                            <td>{{cita.3}}</td>
+                            <td>{{cita.4}}</td>
+                            <td><a href="/medico/editar/HC/{{cita.5}}">editar</a></td>
+                                    
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %} 
+                </table>
+            
+        </section>
     </body>
     <footer>
         <div class="pie">
