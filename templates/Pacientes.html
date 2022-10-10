@@ -4,12 +4,12 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pacientes</title>
-        <link href="./css/Pacientes.css" rel="stylesheet">
+        <title>Paciente</title>
+        <link href="../static/css/Pacientes.css" rel="stylesheet">
         
     </head>
     <footer>
-        <div class="imgT"><img src="./img/log.png">Hospital General de Barranquilla</img>
+        <div class="imgT"><img src="{{url_for('static',filename='img/hospital.png') }}">Hospital General de Barranquilla</img>
             
         </div>
     </footer>
@@ -17,76 +17,82 @@
         
         
         <nav>            
-            <a href="Pacientes.html">Citas</a>
-            <a href="ConsultarCita.html">Consultar Citas</a>
-            <a href="PacienteHistoriaClinica.html">Historia Clinica</a>
+            <a href="/paciente/">Citas</a>
+            <a href="#tabla2">Consultar Citas</a>
+            <a href="/paciente/vercitas/">Historia Clinica</a>
             <div class="cerrar">
-            <a href="#">Cerrar sesión </a>
+            <a href="/cerrar/">Cerrar sesión </a>
             </div>
         </nav><br>
-        <h1>Asignar Cita</h1>
-        <table class="tab">
-            
-                <tr>
-                    <th>Documento</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Fecha y Hora</th>
-                    <th>Asignar Cita</th>
+        <section>
+            <h1>Asignar Cita</h1>
+            <table class="tab" id="tabla1">
                 
-                </tr>
-
                 <tr>
-                    <td>1234</td>
-                    <td>Luz Amanda</td>
-                    <td>Gaviria</td>
-                    <td><input type="datetime-local" id="start" name="trip-start"
-                        value="2018-07-22"
-                        min="2018-01-01" max="2018-12-31"></td>
-                    <td><button>Asignar</button></td>            
-                </tr>
-                <tr>
-                    <td>9020</td>
-                    <td>Nellys</td>
-                    <td>Calderin</td>
-                    <td><input type="datetime-local" id="start" name="trip-start"
-                        value="2018-07-22"
-                        min="2018-01-01" max="2018-12-31"></td>
-                    <td><button>Asignar</button></td> 
-
-                </tr>
-                <tr>
-                    <td>3452</td>
-                    <td>Alexis</td>
-                    <td>Ariza</td>
-                    <td><input type="datetime-local" id="start" name="trip-start"
-                        value="2018-07-22"
-                        min="2018-01-01" max="2018-12-31"></td>
-                    <td><button>Asignar</button></td> 
-
-                </tr>
-                <tr>
-                    <td>9076</td>
-                    <td>Ximena</td>
-                    <td>Quiceno</td>
-                    <td><input type="datetime-local" id="start" name="trip-start"
-                        value="2018-07-22"
-                        min="2018-01-01" max="2018-12-31"></td>
-                    <td><button>Asignar</button></td> 
-
-                </tr>
-                <tr>
-                    <td>3076</td>
-                    <td>Gabriel</td>
-                    <td>Rodriguez</td>
-                    <td><input type="datetime-local" id="start" name="trip-start"
-                        value="2018-07-22"
-                        min="2018-01-01" max="2018-12-31"></td>
-                    <td><button>Asignar</button></td> 
-
-                </tr>
-             
-        </table>
+                        <th>Documento</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>especialidad</th>
+                        <th>Fecha y Hora</th>
+                        <th>Asignar Cita</th>
+                    
+                    </tr>
+                    {% if medicos_disponibles %}
+                    {% for medico in medicos_disponibles %}
+                    <tr>
+                        <form>
+                        <td><input type="text" value="{{medico.0}}" readonly name="idmedico" required></td>
+                        <td>{{medico.1}}</td>
+                        <td>{{medico.2}}</td>
+                        <td>{{medico.3}}</td>
+                        <td><input type="datetime-local" id="start" name="fecha" required></td>
+                        <td><input type="submit" formaction="/paciente/asignarCita/" formmethod="POST" name="fecha" value="asignar"></td>            
+                        </form>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+            </table>
+        </section>
+        <section>
+            
+            <h1>Citas Programadas </h1><br>
+            <pr>Aun puede modificar o cancelar su cita programada</pr>
+            <br>
+            <table class="tab2" id="tabla2">
+                    <tr>
+                        <th>id Cita</th>
+                        <th>Cambiar Medico</th>
+                        <th>Fecha y Hora</th>
+                        <th>Asignar Cita</th>
+                    
+                    </tr>
+                    {% if citas_pacientes %}
+                    {% for cita in citas_pacientes %}
+                    {% if cita.1==None %}
+                    <tr>
+                        <form>
+                        <td><input type="number" value="{{cita.0}}" name="idcita" readonly required></td>
+                        <td>
+                            <select name="idmedico2">
+                                <option value="{{cita.3}}">Actual: {{cita.3}}-{{cita.4}} {{cita.5}}-{{cita.6}}</option>
+                                {% if medicos_disponibles %}
+                                {% for medico in medicos_disponibles %}
+                                <option value="{{medico.0}}">{{medico.0}}-{{medico.1}} {{medico.2}}-{{medico.3}}</option>
+                                {% endfor %}
+                                {% endif %} 
+                            </select>
+                        </td>
+                        <td><input type="datetime-local" id="start" name="fecha" required value="{{cita.2}}"></td>
+                        <td><input type="submit" formaction="/paciente/modificar/cita/" formmethod="POST" name="modificar" value="modificar">
+                        <input type="submit" formaction="/paciente/eliminar/cita/" formmethod="POST" name="cancelar" value="cancelar"></td>            
+                        </form>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %} 
+                    
+            </table>
+        </section>
     </body>
     <footer>
         <div class="pie">

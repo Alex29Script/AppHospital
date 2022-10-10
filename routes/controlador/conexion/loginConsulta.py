@@ -1,5 +1,6 @@
 import sqlite3
 from routes.controlador.conexion.conexion import Conexion
+from werkzeug.security import check_password_hash as checkph
 
 class loginConsultaDB():
     login=False
@@ -13,12 +14,10 @@ class loginConsultaDB():
             cursor=conexion.cursor()
             cursor.execute("SELECT * FROM user WHERE idusuario='%s'" %usuario)
             variable = cursor.fetchone()
-            print(variable[1])
-            
-            
+            #print(variable[1])
             if variable is not None:
-                if variable[1]==contrasena:
-                    print(variable[1], contrasena)
+                if checkph(variable[1],contrasena)==True:
+                    #print(variable[1], contrasena)
                     return True,variable[2]
                 else:
                     print("no concuerdan")

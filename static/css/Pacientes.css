@@ -65,6 +65,11 @@ nav a:hover{
 }
 table {
     border-collapse: collapse;
+    width: 100%;
+    overflow: auto;
+    text-align: center;
+    max-height: 400px;
+    
 }
  
 table,
@@ -78,7 +83,7 @@ td {
     padding: 5px;
 }
 .tab{
-    width: 40%;
+    width: 70%;
     color: #023e8a;
     padding: 5px;
     float: left;
@@ -112,4 +117,38 @@ footer .pie img{
 }
 footer .pie a{
     color: #ffffff;   
+}
+section{
+    position: relative;
+    float: left;
+    color: #023e8a;
+    border-radius: 5px;
+    box-shadow: 1px 0 4px rgb(0,0,0,0.2);
+    margin:10px; 
+    padding: 15px;
+    height: 450px;
+    width: 60%;
+    height: 40%;
+    max-width: 60%;
+    max-height: 500px;
+    
+}
+input{
+    text-align: center;
+}
+
+input[type="submit"]{
+    
+    background-color: #023e8a;
+    color: #fff;
+    border: none;
+    
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+input[type="submit"]:hover{
+    background-color: #8a0216;
 }
